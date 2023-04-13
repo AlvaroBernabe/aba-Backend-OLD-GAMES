@@ -23,7 +23,7 @@ class ProfileSeeder extends Seeder
                     'surname' => "Bernabé Alonso",
                     'phone_number' => 666555442,
                     'direction' => "calle falsa n.257",
-                    'birth_date' => 1993-10-10,
+                    'birth_date' => "1993-10-10",
                     'user_id' => 1,
                 ],
                 [
@@ -32,7 +32,7 @@ class ProfileSeeder extends Seeder
                     'surname' => "Sanchez",
                     'phone_number' => 987654321,
                     'direction' => "calle auténtica n.257",
-                    'birth_date' => 1993-03-03,
+                    'birth_date' => "1993-03-03",
                     'user_id' => 2,
                 ],
                 [
@@ -41,7 +41,7 @@ class ProfileSeeder extends Seeder
                     'surname' => "Nastas",
                     'phone_number' => 666666666,
                     'direction' => "calle verdadera n.257",
-                    'birth_date' => 1992-02-02,
+                    'birth_date' => "1992-02-02",
                     'user_id' => 3,
                 ],
                 [
@@ -50,8 +50,8 @@ class ProfileSeeder extends Seeder
                     'surname' => "Buena Gente",
                     'phone_number' => 123456789,
                     'direction' => "calle casi auténtica n.257",
-                    'birth_date' => 1991-01-01,
-                    'role_id' => 2,
+                    'birth_date' => "1991-01-01",
+                    'user_id' => 4,
                 ]
             ]
         );

@@ -24,7 +24,7 @@ class GameSeeder extends Seeder
                     'score' => 8.3,
                     'genre' => "Racing",
                     'publisher' => "Electronic Arts",
-                    'release_date' => 1997-10-10,
+                    'release_date' => "1997-10-10",
                 ],
                 [
                     'id' => 2,
@@ -33,7 +33,7 @@ class GameSeeder extends Seeder
                     'score' => 9.2,
                     'genre' => "Action",
                     'publisher' => "Sega",
-                    'release_date' => 1998-01-06,
+                    'release_date' => "1998-01-06",
                 ],
                 [
                     'id' => 3,
@@ -42,7 +42,7 @@ class GameSeeder extends Seeder
                     'score' => 7.1,
                     'genre' => "RPG",
                     'publisher' => "FTL Games",
-                    'release_date' => 1992-06-04,
+                    'release_date' => "1992-06-04",
                 ],
                 [
                     'id' => 4,
@@ -51,7 +51,7 @@ class GameSeeder extends Seeder
                     'score' => 6,
                     'genre' => "Action",
                     'publisher' => "Broderbund Software",
-                    'release_date' => 1993-05-05,
+                    'release_date' => "1993-05-05",
                 ],
                 [
                     'id' => 5,
@@ -60,7 +60,7 @@ class GameSeeder extends Seeder
                     'score' => 10.01,
                     'genre' => "Action",
                     'publisher' => "Atarisoft",
-                    'release_date' => 1983-07-19,
+                    'release_date' => "1983-07-19",
                 ],
                 [
                     'id' => 6,
@@ -69,7 +69,7 @@ class GameSeeder extends Seeder
                     'score' => 4.8,
                     'genre' => "Puzzle",
                     'publisher' => "Sierra On-Line",
-                    'release_date' => 1994-04-04,
+                    'release_date' => "1994-04-04",
                 ],
                 [
                     'id' => 7,
@@ -78,7 +78,7 @@ class GameSeeder extends Seeder
                     'score' => 7.8,
                     'genre' => "Strategy",
                     'publisher' => "Green Valley Publishing",
-                    'release_date' => 2013-07-9,
+                    'release_date' => "1983-04-02",
                 ],              
             ]
         );
