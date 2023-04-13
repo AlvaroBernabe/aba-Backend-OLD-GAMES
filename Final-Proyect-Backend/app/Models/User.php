@@ -48,10 +48,11 @@ class User extends Authenticatable
     }
     public function profiles()
     {
-        return $this->belongsTo(Message::class);
+        return $this->belongsTo(Profile::class);
     }
     public function games()
     {
-        return $this->belongsToMany(Party::class);
+        return $this->belongsToMany(Game::class);
     }
+    
 }
