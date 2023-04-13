@@ -15,11 +15,17 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('surname');
-            $table->string('phone_number');
-            $table->string('direction');
-            $table->date('birth_date');
+            $table->string('name')->nullable(true);
+            $table->string('surname')->nullable(true);
+            $table->string('phone_number')->unique()->nullable(true);
+            $table->string('direction')->nullable(true);
+            $table->date('birth_date')->nullable(true);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

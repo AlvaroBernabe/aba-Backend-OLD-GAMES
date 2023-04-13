@@ -15,9 +15,21 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->integer('player_score');
-            $table->string('player_review');
-            $table->boolean('favourite');
+            $table->integer('player_score')->nullable(false);
+            $table->string('player_review')->nullable(false);
+            $table->boolean('favourite')->nullable(false);
+            $table->unsignedBigInteger('game_id')->nullable(false);
+            $table->foreign('game_id')
+            ->references('id')
+            ->on('games')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->nullable(false);
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

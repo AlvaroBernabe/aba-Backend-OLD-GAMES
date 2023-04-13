@@ -15,9 +15,15 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('news_image');
-            $table->string('title');
-            $table->string('summary');
+            $table->string('news_image')->nullable(true);
+            $table->string('title')->nullable(false);
+            $table->string('summary')->nullable(false);
+            $table->unsignedBigInteger('game_id');
+            $table->foreign('game_id')
+            ->references('id')
+            ->on('games')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
 
         });
