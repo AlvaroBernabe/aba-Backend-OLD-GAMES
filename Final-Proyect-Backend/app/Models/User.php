@@ -18,9 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles()
+    {
+        return $this->hasOne(Role::class);
+    }
+    public function profiles()
+    {
+        return $this->belongsTo(Message::class);
+    }
+    public function games()
+    {
+        return $this->belongsToMany(Party::class);
+    }
 }
