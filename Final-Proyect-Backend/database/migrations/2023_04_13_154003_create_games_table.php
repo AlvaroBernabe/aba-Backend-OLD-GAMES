@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('game_image')->nullable(true);
             $table->string('name')->unique()->nullable(false);
             $table->string('description')->nullable(false);
-            $table->integer('score')->nullable(true);
+            $table->float('score')->nullable(true);
             $table->string('genre')->nullable(false);
             $table->string('publisher')->nullable(false);
             $table->date('release_date')->nullable(false);
