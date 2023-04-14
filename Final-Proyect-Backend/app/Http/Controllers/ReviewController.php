@@ -99,4 +99,57 @@ class ReviewController extends Controller
             );
         }
     }
+
+    public function getMyLessFavourites()
+    {
+        // Log::info("Get User Reviews Working");
+        try {
+            $id = auth()->user()->id;
+            $message = DB::table('reviews')->where('user_id', '=', $id)->where('favourite', '=', 0)->get();
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Estos son todas tus reviews",
+                    "data" => $message
+                ],
+                200
+            );
+        } catch (\Throwable $th) {
+            Log::error("Get User Reviews Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
+    public function getMyFavourites()
+    {
+        // Log::info("Get User Reviews Working");
+        try {
+            $id = auth()->user()->id;
+            $message = DB::table('reviews')->where('user_id', '=', $id)->where('favourite', '=', 1)->get();
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Estos son todas tus reviews",
+                    "data" => $message
+                ],
+                200
+            );
+        } catch (\Throwable $th) {
+            Log::error("Get User Reviews Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
 }

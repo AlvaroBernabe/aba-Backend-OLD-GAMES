@@ -50,4 +50,7 @@ Route::middleware('auth:sanctum', 'isAdmin')->delete('/game/{id}', [GameControll
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/review/new', [ReviewController::class, 'newReview']);
     Route::get('/review/myreviews', [ReviewController::class, 'getMyReviews']);
+    Route::get('/review/favourites/not', [ReviewController::class, 'getMyLessFavourites']);
+    Route::get('/review/favourites', [ReviewController::class, 'getMyFavourites']);
 });
+
