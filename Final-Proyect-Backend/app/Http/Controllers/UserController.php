@@ -77,4 +77,32 @@ class UserController extends Controller
             ], 500);
         }
     }
+
+    public function myProfile()
+    {
+        try {
+            // Log::info("Get My Profile Working");
+            $userId = auth()->user()->id;
+            $email = auth()->user()->email;
+            $profile = DB::table('profiles')->where('user_id', '=', $userId)->get();
+            return response(
+                [
+                    "success" => true,
+                    "message" => "User profile get succsessfully",
+                    "data" => $profile,$email
+                ],
+                Response::HTTP_OK
+            );
+        } catch (\Throwable $th) {
+            Log::error("Get my Profile error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
 }
