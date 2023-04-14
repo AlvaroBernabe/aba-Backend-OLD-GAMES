@@ -132,6 +132,48 @@ class GameController extends Controller
         }
     }
 
+    public function findGamesFilter(Request $request,)
+    {
+        try {
+            // Log::info("Get Game by ID Working");
+            $validator = Validator::make($request->all(), [
+                'score' => 'numeric',
+                'genre' => 'string|max:90',
+                'publisher' => 'string|max:90',
+                'release_date' => 'date',
+            ]);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+            $score = $request->input('score');
+            $genre = $request->input('genre');
+            $publisher = $request->input('publisher');
+            $release_date = $request->input('release_date');
+            $games = Game::where('score', $score)
+            ->orWhere('genre', $genre)
+            ->orWhere('publisher', $publisher)
+            ->orWhere('release_date', $release_date)
+            // ->whereBetween('created_at', ['2018-11-10 12:00', '2018-11-11 10:30'])
+            ->first();
+            return [
+                "success" => true,
+                "message" => "These are all the games",
+                "data" => $games
+            ];
+        } catch (\Throwable $th) {
+            Log::error("Get Game by ID  Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
+
+
     public function getGameById($id)
     {
         try {
