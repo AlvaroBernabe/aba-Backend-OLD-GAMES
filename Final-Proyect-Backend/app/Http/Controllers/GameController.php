@@ -6,6 +6,7 @@ use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use function PHPUnit\Framework\isNull;
 
 class GameController extends Controller
 {
@@ -48,6 +49,58 @@ class GameController extends Controller
             );
         } catch (\Throwable $th) {
             Log::error("New Game error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
+    public function updateGameId(Request $request, $id)
+    {
+        try {
+            // Log::info("Update Game by Id Admin Working");
+
+            $validator = Validator::make($request->all(), [
+                'name' => 'string|max:90',
+                'description' => 'string|max:500',
+                'score' => 'numeric',
+                'genre' => 'string|max:90',
+                'publisher' => 'string|max:90',
+                'release_date' => 'date',
+            ]);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+            $name = $request->input('name');
+            $description = $request->input('description');
+            $score = $request->input('score');
+            $genre = $request->input('genre');
+            $publisher = $request->input('publisher');
+            $release_date = $request->input('release_date');
+            $gameUpdate = Game::find($id);
+            if (IsNull($name, $description, $score, $genre, $publisher, $release_date)) {
+                $gameUpdate->name = $name;
+                $gameUpdate->description = $description;
+                $gameUpdate->score = $score;
+                $gameUpdate->genre = $genre;
+                $gameUpdate->publisher = $publisher;
+                $gameUpdate->release_date = $release_date;
+            }
+            $gameUpdate->save();
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Updated Game Correctly",
+                    "data" => $gameUpdate
+                ],
+                200
+            );
+        } catch (\Throwable $th) {
+            Log::error("Update Game by Id Admin  Error: " . $th->getMessage());
             return response()->json(
                 [
                     "success" => false,
