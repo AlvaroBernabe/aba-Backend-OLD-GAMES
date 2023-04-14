@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -53,4 +54,32 @@ class ReviewController extends Controller
             );
         }
     }
+
+    public function getMyReviews()
+    {
+        // Log::info("Get User Reviews Working");
+        try {
+            $id = auth()->user()->id;
+            $message = DB::table('reviews')->where('user_id', '=', $id)->get();
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Estos son todas tus reviews",
+                    "data" => $message
+                ],
+                200
+            );
+        } catch (\Throwable $th) {
+            Log::error("Get User Reviews Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
+
 }
