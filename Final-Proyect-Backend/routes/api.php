@@ -30,5 +30,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
     Route::get('/users/all', [UserController::class, 'getAllUsers']);
     Route::get('/users/all/details/{id}', [UserController::class, 'getUserDetailsByUserId']);
-
+    Route::delete('/users/all/destroy/{id}', [UserController::class, 'deleteUserById']);
 });

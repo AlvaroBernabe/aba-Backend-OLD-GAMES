@@ -152,4 +152,34 @@ class UserController extends Controller
         }
     }
 
+    
+    public function deleteUserById(Request $request, $id)
+    {
+        try {
+            Log::info("Delete User By Id Working");
+            $user = User::find($id);
+            if ($user->role_id != 1) {
+                User::destroy($id);
+                return response()->json([
+                    'success' => true,
+                    'message' => 'User successfully deleted',
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'You cant delete Yourself or Other Admin'
+                ], 400);
+            }
+        } catch (\Throwable $th) {
+            Log::error("Delete User By Id error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
 }
