@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -36,3 +37,6 @@ Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
 
 //Role Controller
 Route::middleware('auth:sanctum', 'isAdmin')->put('/user/role/update', [RoleController::class, 'changeUserToAdmin']);
+
+//Game Controller
+Route::middleware('auth:sanctum', 'isAdmin')->post('/game/new', [GameController::class, 'newGame']);
