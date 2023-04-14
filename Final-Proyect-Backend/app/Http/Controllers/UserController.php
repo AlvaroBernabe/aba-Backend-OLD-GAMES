@@ -88,8 +88,8 @@ class UserController extends Controller
             return response(
                 [
                     "success" => true,
-                    "message" => "User profile get succsessfully",
-                    "data" => $profile,$email
+                    "message" => "This is your profile",
+                    "data" => [$email,$profile]
                 ],
                 Response::HTTP_OK
             );
@@ -120,6 +120,32 @@ class UserController extends Controller
                 [
                     "success" => false,
                     "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
+    public function getUserDetailsByUserId(Request $request, $id)
+    {
+        try {
+            $user = User::query()->find($id);
+            $userEmail = $user->email;
+            $profile = DB::table('profiles')->where('user_id', '=', $id)->get();
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "User Details",
+                    "data" => [$userEmail,$profile]
+                ],
+                200
+            );
+        } catch (\Throwable $th) {
+            Log::error("Get User Details By Id error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage() 
                 ],
                 500
             );
