@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('phone_number')->unique()->nullable(true);
             $table->string('direction')->nullable(true);
             $table->date('birth_date')->nullable(true);
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->unique();
             $table->foreign('user_id')
             ->references('id')
             ->on('users')
