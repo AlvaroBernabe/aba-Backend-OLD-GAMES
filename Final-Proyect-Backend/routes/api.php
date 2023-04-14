@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -44,3 +45,8 @@ Route::middleware('auth:sanctum', 'isAdmin')->put('/game/update/{id}', [GameCont
 Route::middleware('auth:sanctum')->get('/games/all/', [GameController::class, 'getAllGames']);
 Route::middleware('auth:sanctum')->get('/games/all/{id}', [GameController::class, 'getGameById']);
 Route::middleware('auth:sanctum', 'isAdmin')->delete('/game/{id}', [GameController::class, 'deleteGameByIdAdmin']);
+
+//Review Controller
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post('/review/new', [ReviewController::class, 'newReview']);
+});

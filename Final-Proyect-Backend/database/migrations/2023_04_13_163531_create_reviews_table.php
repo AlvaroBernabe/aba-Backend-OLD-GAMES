@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->integer('player_score')->nullable(false);
+            $table->float('player_score')->nullable(false);
             $table->string('player_review')->nullable(false);
             $table->boolean('favourite')->nullable(false);
             $table->unsignedBigInteger('game_id')->nullable(false);
