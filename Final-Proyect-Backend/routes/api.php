@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,3 +33,8 @@ Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
     Route::get('/users/all/details/{id}', [UserController::class, 'getUserDetailsByUserId']);
     Route::delete('/users/all/destroy/{id}', [UserController::class, 'deleteUserById']);
 });
+
+
+//Role Controller
+
+Route::middleware('auth:sanctum', 'isAdmin')->put('/user/role/update', [RoleController::class, 'changeUserToAdmin']);
