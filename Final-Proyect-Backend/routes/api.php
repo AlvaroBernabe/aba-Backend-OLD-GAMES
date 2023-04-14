@@ -34,7 +34,5 @@ Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
     Route::delete('/users/all/destroy/{id}', [UserController::class, 'deleteUserById']);
 });
 
-
 //Role Controller
-
 Route::middleware('auth:sanctum', 'isAdmin')->put('/user/role/update', [RoleController::class, 'changeUserToAdmin']);
