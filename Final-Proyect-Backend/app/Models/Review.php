@@ -9,6 +9,15 @@ class Review extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'player_score',
+        'player_review', 
+        'favourite',
+        'game_id',
+        'user_id',
+    ];
+
+
     public function games()
     {
         return $this->belongsTo(Game::class);

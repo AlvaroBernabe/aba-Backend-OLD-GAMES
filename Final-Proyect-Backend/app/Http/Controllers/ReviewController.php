@@ -28,21 +28,40 @@ class ReviewController extends Controller
             $player_review = $request->input('player_review');
             $favourite = $request->input('favourite');
             $game_id = $request->input('game_id');
-            $newReview = new Review();
-            $newReview->player_score = $player_score;
-            $newReview->player_review = $player_review;
-            $newReview->favourite = $favourite;
-            $newReview->game_id = $game_id;
-            $newReview->user_id = $userId;
-            $newReview->save();
-            return response()->json(
-                [
-                    "success" => true,
-                    "message" => "Review Created",
-                    "data" => $newReview
-                ],
-                200
-            );
+            $newReview = Review::where('user_id', $userId)->where('game_id', $game_id)->first();
+            if (is_null($newReview)) {
+                $newReview = new Review([
+                    'player_score' => $player_score,
+                    'player_review' => $player_review,
+                    'favourite' => $favourite,
+                    'game_id' => $game_id,
+                    'user_id' => $userId
+                ]);
+                $newReview->save();
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Review created successfully",
+                        "data" => $newReview
+                    ],
+                    200
+                );
+            } else {
+                $newReview->player_score = $player_score;
+                $newReview->player_review = $player_review;
+                $newReview->favourite = $favourite;
+                $newReview->game_id = $game_id;
+                $newReview->user_id = $userId;
+                $newReview->save();
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "Review Updated",
+                        "data" => $newReview
+                    ],
+                    200
+                );
+            }
         } catch (\Throwable $th) {
             Log::error("New Review Error: " . $th->getMessage());
             return response()->json(
@@ -80,6 +99,4 @@ class ReviewController extends Controller
             );
         }
     }
-
-
 }
