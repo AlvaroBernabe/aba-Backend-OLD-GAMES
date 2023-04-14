@@ -63,7 +63,6 @@ class GameController extends Controller
     {
         try {
             // Log::info("Update Game by Id Admin Working");
-
             $validator = Validator::make($request->all(), [
                 'name' => 'string|max:90',
                 'description' => 'string|max:500',
@@ -110,4 +109,48 @@ class GameController extends Controller
             );
         }
     }
+
+    public function getAllGames()
+    {
+        try {
+            // Log::info("Get All Games Working");
+            $games = Game::query()->get();
+            return [
+                "success" => true,
+                "message" => "These are all the games",
+                "data" => $games
+            ];
+        } catch (\Throwable $th) {
+            Log::error("Get All Games Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
+    public function deleteGameByIdAdmin(Request $request, $id)
+    {
+        try {
+            Log::info("Delete Game By Id Admin Working");
+            Game::destroy($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Game successfully deleted',
+            ], 200);
+        } catch (\Throwable $th) {
+            Log::error("Delete Game By Id Admin Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+    
 }
