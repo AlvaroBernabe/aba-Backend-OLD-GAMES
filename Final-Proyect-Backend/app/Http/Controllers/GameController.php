@@ -132,6 +132,28 @@ class GameController extends Controller
         }
     }
 
+    public function getGameById($id)
+    {
+        try {
+            // Log::info("Get Game by ID Working");
+            $games = Game::find($id);
+            return [
+                "success" => true,
+                "message" => "These are all the games",
+                "data" => $games
+            ];
+        } catch (\Throwable $th) {
+            Log::error("Get Game by ID  Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
     public function deleteGameByIdAdmin(Request $request, $id)
     {
         try {
@@ -152,5 +174,5 @@ class GameController extends Controller
             );
         }
     }
-    
+
 }
