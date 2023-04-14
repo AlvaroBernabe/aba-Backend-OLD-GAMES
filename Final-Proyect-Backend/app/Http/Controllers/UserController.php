@@ -105,4 +105,25 @@ class UserController extends Controller
         }
     }
 
+    public function getAllUsers()
+    {
+        try {
+            Log::info("Get All Users Working");
+            $users = User::query()->get();
+            return [
+                "success" => true,
+                "data" => $users
+            ];
+        } catch (\Throwable $th) {
+            Log::error("Get All Users error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
 }
