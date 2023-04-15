@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -53,5 +54,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/review/myreviews', [ReviewController::class, 'getMyReviews']);
     Route::get('/review/favourites/not', [ReviewController::class, 'getMyLessFavourites']);
     Route::get('/review/favourites', [ReviewController::class, 'getMyFavourites']);
+});
+
+//News Controller
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post('/news/new', [NewsController::class, 'newNews']);
 });
 

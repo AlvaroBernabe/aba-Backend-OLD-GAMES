@@ -154,7 +154,7 @@ class GameController extends Controller
             ->orWhere('publisher', $publisher)
             ->orWhere('release_date', $release_date)
             // ->whereBetween('created_at', ['2018-11-10 12:00', '2018-11-11 10:30'])
-            ->first();
+            ->get();
             return [
                 "success" => true,
                 "message" => "These are all the games",

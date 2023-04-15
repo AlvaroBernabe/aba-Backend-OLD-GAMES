@@ -9,6 +9,12 @@ class News extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'summary',
+        'game_id',
+    ];
+
     public function games()
     {
         return $this->belongsTo(Game::class);
