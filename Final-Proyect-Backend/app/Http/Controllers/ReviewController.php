@@ -75,72 +75,72 @@ class ReviewController extends Controller
         }
     }
 
+
+    //This FUNCTION GET THE RESULT IN 2 ARRAYS SEPARATED INSTEAD OF ONE
+    // public function getMyReviews()
+    // {
+    //     try {
+    //         $id = auth()->user()->id;
+    //         $reviews = DB::table('reviews')->where('user_id', $id)->get();
+    //         $gameId = $reviews->pluck( 'game_id' );
+    //         $gameFind = Game::query()->whereIn('id', $reviews->pluck('game_id'))->get('name');
+    //         $gameName = $gameFind[0]->name;
+    //         foreach ($gameFind as $data){
+    //             return [
+    //                 "success" => true,
+    //                 "message" => "These are all the news",
+    //                 "data" => [              
+    //                                 'Title of Game' => $gameFind,
+    //                                 'Message' =>  $reviews
+
+    //                 ]
+    //             ];
+    //         }
+    //         return response()->json(
+    //             [
+    //                 "success" => true,
+    //                 "message" => "Estos son todas tus reviews",
+    //                 "data" => $reviews
+    //             ],
+    //             200
+    //         );
+    //     } catch (\Throwable $th) {
+    //         Log::error("Get User Reviews Error: " . $th->getMessage());
+    //         return response()->json(
+    //             [
+    //                 "success" => false,
+    //                 "message" => $th->getMessage() .$gameFind
+    //             ],
+    //             500
+    //         );
+    //     }
+    // }
+
     public function getMyReviews()
     {
-        // Log::info("Get User Reviews Working");
         try {
             $id = auth()->user()->id;
-            // $reviews = Review::query()->where('user_id', '=', $id)->get();
             $reviews = DB::table('reviews')->where('user_id', $id)->get();
-            $gameId = $reviews->pluck( 'game_id' );
-            // $game_id = $reviews[0]->game_id;
-            // $gameName = DB::table('games')->where('id', '=', $id)->get();
-            // $game_id = Review::with('reviews.games')->whereRelation('game_id','id')->first();
-            $gameFind = Game::query()->whereIn('id', $reviews->pluck('game_id'))->get('name');
-            $gameName = $gameFind[0]->name;
-            foreach ($gameFind as $data){
-                // $gameId = $reviews->game_id;
-                return [
-                    "success" => true,
-                    "message" => "These are all the news",
-                    "data" => [              
-                                    'Title of Game' => $gameFind,
-                                    'Message' =>  $reviews
-
-                        // 'id' => $reviews->id,
-                        // 'player_score' => $reviews->player_score,
-                        // 'player_review' => $reviews->player_review,
-                        // 'favourite' => $reviews->favourite,
-                        // 'game_id' => $reviews->game_id,
-                        // 'title' => $gameFind->name
-                        
-                    ]
-                ];
-            }
-            return response()->json(
-                [
-                    "success" => true,
-                    "message" => "Estos son todas tus reviews",
-                    "data" => $reviews
-                ],
-                200
-            );
-            // $reviews = DB::table('reviews')->where('user_id', '=', $id)->first();
-            // $reviewsId = Review::query()->where('user_id', '=', $id)->first();
-            // $gameId = $reviewsId->game_id;
-            // $gameData = Game::query()->find($gameId);
-            // $gameTitle = $gameData->title;
-            // return response()->json(
-            //     [
-            //         "success" => true,
-            //         "message" => "Message of Games Id",
-            //         "data" => [
-            //             'Title of Game' => $gameTitle,
-            //             'Message' =>  $reviewsId
-            //         ]
-            //     ],
-            //     200
-            // );
-            // $user = Game::find($userId);
-            // $gameName = $user->party()->wherePivot('user_id', $userId)->get();
-            // $game_id->category->name; // get category name
-            // $game_id->category->user->name; // get user name
+            $gameIds = $reviews->pluck('game_id');
+            $games = Game::query()->whereIn('id', $gameIds)->get(['name', 'id']);
+            $reviews = $reviews->map(function ($review) use ($games) {
+                $game = $games->where('id', $review->game_id)->first();
+                $review->game_title = $game->name;
+                return $review;
+            });
+            return [
+                "success" => true,
+                "message" => "These are all your reviews",
+                "data" => [
+                    'Reviews' => $reviews,
+                ]
+            ];
         } catch (\Throwable $th) {
             Log::error("Get User Reviews Error: " . $th->getMessage());
             return response()->json(
                 [
                     "success" => false,
-                    "message" => $th->getMessage() .$gameFind
+                    "message" => $th->getMessage()
                 ],
                 500
             );
@@ -198,5 +198,4 @@ class ReviewController extends Controller
             );
         }
     }
-
 }
