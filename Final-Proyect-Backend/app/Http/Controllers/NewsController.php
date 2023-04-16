@@ -57,28 +57,21 @@ class NewsController extends Controller
         try {
             // Log::info("Get All News Working");
             $news = News::where('game_id', '!=', 0)->get();
-            // $stations = news::find(1);     
-            $news->get();
-            // $messagedUsers = News::whereHas('game_id',function(Builder $query){
-            //     $query->where('game_id', auth()->user()->id)
-            // })->with('latestComment')
-            // ->get();
-            foreach ($news as $data){
-                    $gameId = $news->game_id;
-                    $gameFind = Game::query()->where('id', '=', $gameId)->first();
-                    $gameName = $gameFind->name;
-                    return [
-                        "success" => true,
-                        "message" => "These are all the news",
-                        "data" => [$gameName,$news]
-                        
-                    ];
-                }
-
-            // $news = News::query()->first();
-            // $gameId = $news->game_id;
-            // $gameFind = Game::query()->where('id', '=', $gameId)->first();
-            // $gameName = $gameFind->name;
+            $result = [];
+            foreach ($news as $data) {
+                $gameId = $data->game_id;
+                $gameFind = Game::where('id', '=', $gameId)->first();
+                $gameName = $gameFind->name;
+                $result[] = [
+                    "game_name" => $gameName,
+                    "news" => $data
+                ];
+            }
+            return [
+                "success" => true,
+                "message" => "These are all the news",
+                "data" => $result
+            ];
         } catch (\Throwable $th) {
             Log::error("Get All News Error: " . $th->getMessage());
             return response()->json(
