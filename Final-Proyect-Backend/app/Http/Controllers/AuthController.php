@@ -121,4 +121,54 @@ class AuthController extends Controller
         }
     }
 
+    public function changeLogin(Request $request)
+    {
+        try {
+            // Log::info("Change User Login Working");
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|string|email|max:70|unique:users',
+                'password' => ['required','string','max:70',Password::min(8)->mixedCase()->numbers()->symbols()]
+            ]);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+            $userId = auth()->user()->id;
+            $email = $request->input('email');
+            $password = $request->input('password');
+            $user_login = User::where('id', $userId)->first();
+            if ($user_login->id == $userId)  {
+                $user_login->id = $userId;
+                $user_login->email = $email;
+                $user_login->password = bcrypt($password);
+                $user_login->update();
+                $accessToken = $request->bearerToken();
+                $token = PersonalAccessToken::findToken($accessToken);
+                $token->delete();
+                $token = $user_login->createToken('apiToken')->plainTextToken;
+                return response()->json(
+                    [
+                        "success" => true,
+                        "message" => "User Login Updated successfully",
+                        "data" => $user_login,$token
+                    ],
+                    200
+                );
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'You can´t update other users'
+                ], 400);
+            }
+        } catch (\Throwable $th) {
+            Log::error("Logout error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => "Change User Login error"
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
+        }
+    }
+
 }
