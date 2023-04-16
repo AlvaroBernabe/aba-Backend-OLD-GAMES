@@ -54,6 +54,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/review/myreviews', [ReviewController::class, 'getMyReviews']);
     Route::get('/review/favourites/not', [ReviewController::class, 'getMyLessFavourites']);
     Route::get('/review/favourites', [ReviewController::class, 'getMyFavourites']);
+    Route::delete('/review/{id}', [ReviewController::class, 'deleteReviewAdmin']);
+
 });
 
 //News Controller
