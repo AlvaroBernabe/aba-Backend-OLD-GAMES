@@ -223,4 +223,30 @@ class ReviewController extends Controller
             );
         }
     }
+
+    
+    public function deleteReviewsByUserID_Admin($id)
+    {
+        // Log::info("Deleted User Reviews Working");
+        try {
+            $reviews = DB::table('reviews')->where('user_id', $id)->delete();
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Review Removed",
+                    "data" => $reviews
+                ],
+                200
+            );
+        } catch (\Throwable $th) {
+            Log::error("Deleted User Reviews Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
 }

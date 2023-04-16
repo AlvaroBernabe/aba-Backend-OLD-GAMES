@@ -55,11 +55,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/review/favourites/not', [ReviewController::class, 'getMyLessFavourites']);
     Route::get('/review/favourites', [ReviewController::class, 'getMyFavourites']);
     Route::delete('/review/{id}', [ReviewController::class, 'deleteReviewAdmin']);
-
+    Route::delete('/review/all/{id}', [ReviewController::class, 'deleteReviewsByUserID_Admin']);
 });
 
 //News Controller
-
 Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
     Route::post('/news/new', [NewsController::class, 'newNews']);
     Route::put('/news/update/{id}', [NewsController::class, 'updateNewsId']);
