@@ -19,4 +19,9 @@ class Game extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function reviews()
+    {
+        return $this->belongsTo(Review::class);
+    }
+
 }

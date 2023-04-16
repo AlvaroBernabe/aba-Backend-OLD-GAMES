@@ -61,4 +61,4 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/news/new', [NewsController::class, 'newNews']);
 });
-
+Route::middleware('auth:sanctum')->get('/news/all/', [NewsController::class, 'getAllNews']);
