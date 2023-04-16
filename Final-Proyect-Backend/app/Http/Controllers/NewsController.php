@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use function PHPUnit\Framework\isNull;
 
 class NewsController extends Controller
 {
@@ -95,6 +96,48 @@ class NewsController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             Log::error("Delete News By Id Admin Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
+    public function updateNewsId(Request $request, $id)
+    {
+        try {
+            // Log::info("Update News by Id Admin Working");
+            $validator = Validator::make($request->all(), [
+                'title' => 'string|max:90',
+                'summary' => 'string|max:500',
+                'game_id' => 'integer',
+            ]);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+            $title = $request->input('title');
+            $summary = $request->input('summary');
+            $game_id = $request->input('game_id');
+            $newNews = News::find($id);
+            if (IsNull($title, $summary, $game_id)) {
+                $newNews->title = $title;
+                $newNews->summary = $summary;
+                $newNews->game_id = $game_id;
+            }
+            $newNews->save();
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Updated News",
+                    "data" => $newNews
+                ],
+                200
+            );
+        } catch (\Throwable $th) {
+            Log::error("Update News by Id Admin  Error: " . $th->getMessage());
             return response()->json(
                 [
                     "success" => false,

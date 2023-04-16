@@ -60,6 +60,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
 Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
     Route::post('/news/new', [NewsController::class, 'newNews']);
+    Route::put('/news/update/{id}', [NewsController::class, 'updateNewsId']);
     Route::delete('/news/all/destroy/{id}', [NewsController::class, 'deleteNewsByIdAdmin']);
 
 });
