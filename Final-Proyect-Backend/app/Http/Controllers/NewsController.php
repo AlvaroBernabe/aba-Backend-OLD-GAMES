@@ -84,5 +84,26 @@ class NewsController extends Controller
         }
     }
 
+    public function deleteNewsByIdAdmin(Request $request, $id)
+    {
+        try {
+            // Log::info("Delete News By Id Admin Working");
+            News::destroy($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'News successfully deleted',
+            ], 200);
+        } catch (\Throwable $th) {
+            Log::error("Delete News By Id Admin Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
 
 }

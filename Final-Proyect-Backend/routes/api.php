@@ -58,7 +58,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
 //News Controller
 
-Route::group(['middleware' => 'auth:sanctum'], function () {
+Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
     Route::post('/news/new', [NewsController::class, 'newNews']);
+    Route::delete('/news/all/destroy/{id}', [NewsController::class, 'deleteNewsByIdAdmin']);
+
 });
 Route::middleware('auth:sanctum')->get('/news/all/', [NewsController::class, 'getAllNews']);
