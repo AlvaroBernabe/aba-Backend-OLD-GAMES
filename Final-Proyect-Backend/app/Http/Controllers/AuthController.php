@@ -4,18 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Laravel\Sanctum\PersonalAccessToken;
 use Symfony\Component\HttpFoundation\Response;
-// Laravel\Passport\HasApiTokens
+use Illuminate\Support\Facades\Auth;
+
 
 
 class AuthController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login']]);
+    }
+
     public function register(Request $request)
     {
         try {
@@ -32,12 +38,12 @@ class AuthController extends Controller
                 'password' => bcrypt($request['password']),
                 'role_id' => 2,
             ]);
-            $token = $user->createToken('apiToken')->plainTextToken;
+            // $token = $user->createToken('apiToken')->plainTextToken;
             $res = [
                 "success" => true,
                 "message" => "User registered successfully",
                 'data' => $user,
-                "token" => $token
+                // "token" => $token
             ];
             return response()->json(
                 $res,
@@ -54,54 +60,33 @@ class AuthController extends Controller
             );
         }
     }
+    
 
     public function login(Request $request)
     {
-        try {
-            // Log::info("Login User Working");
-            // $validator = Validator::make($request->all(), [
-            //     'email' => 'required|string|email|max:70|unique:users',
-            //     'password' => ['required','string','max:70',Password::min(8)->mixedCase()->numbers()->symbols()]
-            // ]);
-            // if ($validator->fails()) {
-            //     return response()->json($validator->errors(), 400);
-            // }
-            
-            $user = User::query()->where('email', $request['email'])->first();
-            if (!$user) {
-                return response(
-                    ["success" => false, "message" => "Email or password are invalid",],
-                    Response::HTTP_NOT_FOUND
-                );
-            }
-            if (!Hash::check($request['password'], $user->password)) {
-                return response(["success" => true, "message" => "Email or password are invalid"], Response::HTTP_NOT_FOUND);
-            };
-
-            $role_id = $user->role_id;
-            // $token = $user->createToken('apiToken')->plainTextToken;
-            $token = $user->createToken('auth_token', [$role_id])->accessToken;
-            
-            $res = [
-                "success" => true,
-                "message" => "User logged successfully",
-                'token_type' => 'Bearer',
-                "token" => $token
-            ];
-            return response()->json(
-                $res,
-                Response::HTTP_ACCEPTED
-            );
-        } catch (\Throwable $th) {
-            Log::error("Login error: " . $th->getMessage());
-            return response()->json(
-                [
-                    "success" => false,
-                    "message" => "Login error"
-                ],
-                500
-            );
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+        $user = User::where('email', $request['email'])->first();
+        $token = auth()->login($user);
+        if (!$token) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized',
+            ], 401);
         }
+
+        return response()->json([
+                'status' => 'success',
+                'user' => $user,
+                'authorisation' => [
+                    'token' => $token,
+                    'user' => $user,
+                    // 'token' => $token2,
+                    'type' => 'bearer',
+                ]
+            ]);
     }
 
     public function logout(Request $request)
