@@ -23,12 +23,12 @@ use Illuminate\Support\Facades\Route;
 // AuthController
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:verifyToken')->post('/logout', [AuthController::class, 'logout']);
-Route::middleware('auth:verifyToken')->put('/updatelogin', [AuthController::class, 'changeLogin']);
+Route::middleware('verifyToken')->post('/logout', [AuthController::class, 'logout']);
+Route::middleware('verifyToken')->put('/updatelogin', [AuthController::class, 'changeLogin']);
 
 
 // User Controller
-Route::group(['middleware' => 'auth:verifyToken'], function () {
+Route::group(['middleware' => 'verifyToken'], function () {
     Route::get('/profile', [UserController::class, 'myProfile']);
     Route::put('/profile/update', [UserController::class, 'updateProfile']);
 });
@@ -40,18 +40,18 @@ Route::group(['middleware' => ['verifyToken','isAdmin']], function () {
 });
 
 //Role Controller
-Route::middleware('auth:verifyToken', 'isAdmin')->put('/user/role/update', [RoleController::class, 'changeUserToAdmin']);
+Route::middleware('verifyToken', 'isAdmin')->put('/user/role/update', [RoleController::class, 'changeUserToAdmin']);
 
 //Game Controller
-Route::middleware('auth:verifyToken', 'isAdmin')->post('/game/new', [GameController::class, 'newGame']);
-Route::middleware('auth:verifyToken', 'isAdmin')->put('/game/update/{id}', [GameController::class, 'updateGameId']);
-Route::middleware('auth:verifyToken')->get('/games/all/', [GameController::class, 'getAllGames']);
-Route::middleware('auth:verifyToken')->post('/games/find/', [GameController::class, 'findGamesFilter']);
-Route::middleware('auth:verifyToken')->get('/games/all/{id}', [GameController::class, 'getGameById']);
-Route::middleware('auth:verifyToken', 'isAdmin')->delete('/game/{id}', [GameController::class, 'deleteGameByIdAdmin']);
+Route::middleware('verifyToken', 'isAdmin')->post('/game/new', [GameController::class, 'newGame']);
+Route::middleware('verifyToken', 'isAdmin')->put('/game/update/{id}', [GameController::class, 'updateGameId']);
+Route::middleware('verifyToken')->get('/games/all/', [GameController::class, 'getAllGames']);
+Route::middleware('verifyToken')->post('/games/find/', [GameController::class, 'findGamesFilter']);
+Route::middleware('verifyToken')->get('/games/all/{id}', [GameController::class, 'getGameById']);
+Route::middleware('verifyToken', 'isAdmin')->delete('/game/{id}', [GameController::class, 'deleteGameByIdAdmin']);
 
 //Review Controller
-Route::group(['middleware' => 'auth:verifyToken'], function () {
+Route::group(['middleware' => 'verifyToken'], function () {
     Route::post('/review/new', [ReviewController::class, 'newReview']);
     Route::get('/review/myreviews', [ReviewController::class, 'getMyReviews']);
     Route::get('/review/favourites/not', [ReviewController::class, 'getMyLessFavourites']);
@@ -61,10 +61,10 @@ Route::group(['middleware' => 'auth:verifyToken'], function () {
 });
 
 //News Controller
-Route::group(['middleware' => ['auth:verifyToken', 'isAdmin']], function () {
+Route::group(['middleware' => ['verifyToken', 'isAdmin']], function () {
     Route::post('/news/new', [NewsController::class, 'newNews']);
     Route::put('/news/update/{id}', [NewsController::class, 'updateNewsId']);
     Route::delete('/news/all/destroy/{id}', [NewsController::class, 'deleteNewsByIdAdmin']);
 
 });
-Route::middleware('auth:verifyToken')->get('/news/all/', [NewsController::class, 'getAllNews']);
+Route::middleware('verifyToken')->get('/news/all/', [NewsController::class, 'getAllNews']);
