@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use Laravel\Sanctum\PersonalAccessToken;
 use Symfony\Component\HttpFoundation\Response;
+// Laravel\Passport\HasApiTokens
+
 
 class AuthController extends Controller
 {
@@ -63,6 +66,7 @@ class AuthController extends Controller
             // if ($validator->fails()) {
             //     return response()->json($validator->errors(), 400);
             // }
+            
             $user = User::query()->where('email', $request['email'])->first();
             if (!$user) {
                 return response(
@@ -72,11 +76,16 @@ class AuthController extends Controller
             }
             if (!Hash::check($request['password'], $user->password)) {
                 return response(["success" => true, "message" => "Email or password are invalid"], Response::HTTP_NOT_FOUND);
-            }
-            $token = $user->createToken('apiToken')->plainTextToken;
+            };
+
+            $role_id = $user->role_id;
+            // $token = $user->createToken('apiToken')->plainTextToken;
+            $token = $user->createToken('auth_token', [$role_id])->accessToken;
+            
             $res = [
                 "success" => true,
                 "message" => "User logged successfully",
+                'token_type' => 'Bearer',
                 "token" => $token
             ];
             return response()->json(

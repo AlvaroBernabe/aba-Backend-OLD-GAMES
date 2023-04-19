@@ -26,7 +26,6 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 Route::middleware('auth:sanctum')->put('/updatelogin', [AuthController::class, 'changeLogin']);
 
-
 // User Controller
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/profile', [UserController::class, 'myProfile']);
@@ -65,6 +64,5 @@ Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
     Route::post('/news/new', [NewsController::class, 'newNews']);
     Route::put('/news/update/{id}', [NewsController::class, 'updateNewsId']);
     Route::delete('/news/all/destroy/{id}', [NewsController::class, 'deleteNewsByIdAdmin']);
-
 });
 Route::middleware('auth:sanctum')->get('/news/all/', [NewsController::class, 'getAllNews']);
