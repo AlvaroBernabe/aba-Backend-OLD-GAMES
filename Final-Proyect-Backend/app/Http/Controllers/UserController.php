@@ -108,11 +108,22 @@ class UserController extends Controller
     public function getAllUsers()
     {
         try {
-            Log::info("Get All Users Working");
+            // Log::info("Get All Users Working");
             $users = User::query()->get();
+            $userId = $users->pluck('id', 'email');
+            $profile = DB::table('profiles')->get();
+            $perfiles = Profile::query()->whereIn('user_id', $userId)->get(['name', 'user_id', 'surname', 'phone_number', 'direction', 'birth_date']);
+            $profile = $users->map(function ($datos) use ($perfiles) {
+                $usuario = $perfiles->where('user_id', $datos->id)->first();
+                $datos->perfil = $usuario;
+                return $datos;
+            });
             return [
                 "success" => true,
-                "data" => $users
+                "message" => "These are all the users",
+                "data" => [
+                    'resultado' => $profile,
+                ]
             ];
         } catch (\Throwable $th) {
             Log::error("Get All Users error: " . $th->getMessage());
