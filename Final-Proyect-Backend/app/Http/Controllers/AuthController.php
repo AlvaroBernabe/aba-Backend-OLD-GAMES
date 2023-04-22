@@ -90,13 +90,13 @@ class AuthController extends Controller
     {
         try {
             // Log::info("Logout User Working");
-            $accessToken = $request->bearerToken();
-            $token = PersonalAccessToken::findToken($accessToken);
-            $token->delete();
+            $request->bearerToken->delete();
+            // $token = PersonalAccessToken::findToken($accessToken);
+            // $request;
             return response(
                 [
                     "success" => true,
-                    "message" => "Logout successfully"
+                    "message" => "Logout successfully" 
                 ],
                 Response::HTTP_OK
             );
@@ -117,14 +117,15 @@ class AuthController extends Controller
         try {
             // Log::info("Change User Login Working");
             $validator = Validator::make($request->all(), [
-                'email' => 'required|string|email|max:70|unique:users',
+                // 'email' => 'required|string|email|max:70|unique:users',
                 'password' => ['required','string','max:70',Password::min(8)->mixedCase()->numbers()->symbols()]
             ]);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
             $userId = auth()->user()->id;
-            $email = $request->input('email');
+            $email = auth()->user()->email;
+            // $email = $request->input('email');
             $password = $request->input('password');
             $user_login = User::where('id', $userId)->first();
             if ($user_login->id == $userId)  {
@@ -132,15 +133,15 @@ class AuthController extends Controller
                 $user_login->email = $email;
                 $user_login->password = bcrypt($password);
                 $user_login->update();
-                $accessToken = $request->bearerToken();
-                $token = PersonalAccessToken::findToken($accessToken);
-                $token->delete();
-                $token = $user_login->createToken('apiToken')->plainTextToken;
+                // $accessToken = $request->bearerToken();
+                // $token = PersonalAccessToken::findToken($accessToken);
+                // $token->delete();
+                // $token = $user_login->createToken('apiToken')->plainTextToken;
                 return response()->json(
                     [
                         "success" => true,
                         "message" => "User Login Updated successfully",
-                        "data" => $user_login,$token
+                        "data" => $user_login
                     ],
                     200
                 );

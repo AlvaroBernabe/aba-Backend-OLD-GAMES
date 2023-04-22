@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,7 @@ Route::group(['middleware' => 'verifyToken'], function () {
     Route::delete('/review/{id}', [ReviewController::class, 'deleteReviewAdmin']);
     Route::delete('/review/all/{id}', [ReviewController::class, 'deleteReviewsByUserID_Admin']);
 });
+Route::middleware('verifyToken', 'isAdmin')->get('/reviews/all', [ReviewController::class, 'getAllReviews']);
 
 //News Controller
 Route::group(['middleware' => ['verifyToken', 'isAdmin']], function () {

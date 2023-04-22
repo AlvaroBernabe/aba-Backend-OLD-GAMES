@@ -249,4 +249,36 @@ class ReviewController extends Controller
             );
         }
     }
+
+    public function getAllReviews()
+    {
+        try {
+            // Log::info("Get All News Working");
+            $news = Review::where('game_id', '!=', 0)->get();
+            $result = [];
+            foreach ($news as $data) {
+                $gameId = $data->game_id;
+                $gameFind = Game::where('id', '=', $gameId)->first();
+                $gameName = $gameFind->name;
+                $result[] = [
+                    "game_name" => $gameName,
+                    "Reviews" => $data
+                ];
+            }
+            return [
+                "success" => true,
+                "message" => "These are all the Reviews",
+                "data" => $result
+            ];
+        } catch (\Throwable $th) {
+            Log::error("Get All Reviews Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
 }
