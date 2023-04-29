@@ -24,8 +24,9 @@ return new class extends Migration
             ->on('roles')
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->rememberToken();
             $table->timestamps();
+            $table->rememberToken();
+
         });
     }
 

@@ -24,9 +24,9 @@ class UserSeeder extends Seeder
                     'password' => bcrypt("123456"),
                     'role_id' => 1,
                     'email_verified_at' => now(),
-                    'remember_token' => Str::random(10),
                     'created_at' => now(),
                     'updated_at' => now(),
+                    // 'remember_token' => Str::random(10),
                 ],
                 [
                     'id' => 2,
@@ -34,9 +34,9 @@ class UserSeeder extends Seeder
                     'password' => bcrypt("123456"),
                     'role_id' => 1,
                     'email_verified_at' => now(),
-                    'remember_token' => Str::random(10),
                     'created_at' => now(),
                     'updated_at' => now(),
+                    // 'remember_token' => Str::random(10),
                 ],
                 [
                     'id' => 3,
@@ -44,9 +44,9 @@ class UserSeeder extends Seeder
                     'password' => bcrypt("123456"),
                     'role_id' => 2,
                     'email_verified_at' => now(),
-                    'remember_token' => Str::random(10),
                     'created_at' => now(),
                     'updated_at' => now(),
+                    // 'remember_token' => Str::random(10),
                 ],
                 [
                     'id' => 4,
@@ -54,9 +54,9 @@ class UserSeeder extends Seeder
                     'password' => bcrypt("123456"),
                     'role_id' => 2,
                     'email_verified_at' => now(),
-                    'remember_token' => Str::random(10),
                     'created_at' => now(),
                     'updated_at' => now(),
+                    // 'remember_token' => Str::random(10),
                 ]
             ]
         );
