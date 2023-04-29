@@ -24,35 +24,35 @@ use Illuminate\Support\Facades\Route;
 // AuthController
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('verifyToken')->post('/logout', [AuthController::class, 'logout']);
-Route::middleware('verifyToken')->put('/updatelogin', [AuthController::class, 'changeLogin']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
+Route::middleware('auth:sanctum')->put('/updatelogin', [AuthController::class, 'changeLogin']);
 
 
 // User Controller
-Route::group(['middleware' => 'verifyToken'], function () {
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/profile', [UserController::class, 'myProfile']);
     Route::put('/profile/update', [UserController::class, 'updateProfile']);
 });
 
-Route::group(['middleware' => ['verifyToken','isAdmin']], function () {
+Route::group(['middleware' => ['auth:sanctum','isAdmin']], function () {
     Route::get('/users/all', [UserController::class, 'getAllUsers']);
     Route::get('/users/all/details/{id}', [UserController::class, 'getUserDetailsByUserId']);
     Route::delete('/users/all/destroy/{id}', [UserController::class, 'deleteUserById']);
 });
 
 //Role Controller
-Route::middleware('verifyToken', 'isAdmin')->put('/user/role/update', [RoleController::class, 'changeUserToAdmin']);
+Route::middleware('auth:sanctum', 'isAdmin')->put('/user/role/update', [RoleController::class, 'changeUserToAdmin']);
 
 //Game Controller
-Route::middleware('verifyToken', 'isAdmin')->post('/game/new', [GameController::class, 'newGame']);
-Route::middleware('verifyToken', 'isAdmin')->put('/game/update/{id}', [GameController::class, 'updateGameId']);
-Route::middleware('verifyToken')->get('/games/all/', [GameController::class, 'getAllGames']);
-Route::middleware('verifyToken')->post('/games/find/', [GameController::class, 'findGamesFilter']);
-Route::middleware('verifyToken')->get('/games/all/{id}', [GameController::class, 'getGameById']);
-Route::middleware('verifyToken', 'isAdmin')->delete('/game/{id}', [GameController::class, 'deleteGameByIdAdmin']);
+Route::middleware('auth:sanctum', 'isAdmin')->post('/game/new', [GameController::class, 'newGame']);
+Route::middleware('auth:sanctum', 'isAdmin')->put('/game/update/{id}', [GameController::class, 'updateGameId']);
+Route::middleware('auth:sanctum')->get('/games/all/', [GameController::class, 'getAllGames']);
+Route::middleware('auth:sanctum')->post('/games/find/', [GameController::class, 'findGamesFilter']);
+Route::middleware('auth:sanctum')->get('/games/all/{id}', [GameController::class, 'getGameById']);
+Route::middleware('auth:sanctum', 'isAdmin')->delete('/game/{id}', [GameController::class, 'deleteGameByIdAdmin']);
 
 //Review Controller
-Route::group(['middleware' => 'verifyToken'], function () {
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/review/new', [ReviewController::class, 'newReview']);
     Route::get('/review/myreviews', [ReviewController::class, 'getMyReviews']);
     Route::get('/review/favourites/not', [ReviewController::class, 'getMyLessFavourites']);
@@ -60,13 +60,13 @@ Route::group(['middleware' => 'verifyToken'], function () {
     Route::delete('/review/{id}', [ReviewController::class, 'deleteReviewAdmin']);
     Route::delete('/review/all/{id}', [ReviewController::class, 'deleteReviewsByUserID_Admin']);
 });
-Route::middleware('verifyToken', 'isAdmin')->get('/reviews/all', [ReviewController::class, 'getAllReviews']);
+Route::middleware('auth:sanctum', 'isAdmin')->get('/reviews/all', [ReviewController::class, 'getAllReviews']);
 
 //News Controller
-Route::group(['middleware' => ['verifyToken', 'isAdmin']], function () {
+Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
     Route::post('/news/new', [NewsController::class, 'newNews']);
     Route::put('/news/update/{id}', [NewsController::class, 'updateNewsId']);
     Route::delete('/news/all/destroy/{id}', [NewsController::class, 'deleteNewsByIdAdmin']);
 
 });
-Route::middleware('verifyToken')->get('/news/all/', [NewsController::class, 'getAllNews']);
+Route::middleware('auth:sanctum')->get('/news/all/', [NewsController::class, 'getAllNews']);
