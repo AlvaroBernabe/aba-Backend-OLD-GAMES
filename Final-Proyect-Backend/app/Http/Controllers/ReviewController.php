@@ -122,11 +122,12 @@ class ReviewController extends Controller
             $id = auth()->user()->id;
             $reviews = DB::table('reviews')->where('user_id', $id)->get();
             $gameIds = $reviews->pluck('game_id');
-            $games = Game::query()->whereIn('id', $gameIds)->get(['name', 'id']);
+            $games = Game::query()->whereIn('id', $gameIds)->get(['name', 'id', 'game_image']);
             $reviews = $reviews->map(function ($review) use ($games) {
                 $game = $games->where('id', $review->game_id)->first();
+                $review->game_image = $game->game_image;
                 $review->game_title = $game->name;
-                return $review;
+                return [$review];
             });
             return [
                 "success" => true,
@@ -182,7 +183,7 @@ class ReviewController extends Controller
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "Estos son todas tus reviews",
+                    "message" => "Estos son tus reviews Favoritas",
                     "data" => $message
                 ],
                 200

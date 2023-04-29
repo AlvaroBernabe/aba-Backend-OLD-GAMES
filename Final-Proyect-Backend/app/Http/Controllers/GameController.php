@@ -238,7 +238,7 @@ class GameController extends Controller
                 "data" => $games
             ];
         } catch (\Throwable $th) {
-            Log::error("Get All Games Error: " . $th->getMessage());
+            Log::error("Get All Games Without Review User Error: " . $th->getMessage());
             return response()->json(
                 [
                     "success" => false,
