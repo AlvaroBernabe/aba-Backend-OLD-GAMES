@@ -31,6 +31,7 @@ class GameController extends Controller
             $genre = $request->input('genre');
             $publisher = $request->input('publisher');
             $release_date = $request->input('release_date');
+            $game_image = $request->input('game_image');
             $newGame = new Game();
             $newGame->name = $name;
             $newGame->description = $description;
@@ -38,6 +39,7 @@ class GameController extends Controller
             $newGame->genre = $genre;
             $newGame->publisher = $publisher;
             $newGame->release_date = $release_date;
+            $newGame->game_image = $game_image;
             $newGame->save();
             return response()->json(
                 [

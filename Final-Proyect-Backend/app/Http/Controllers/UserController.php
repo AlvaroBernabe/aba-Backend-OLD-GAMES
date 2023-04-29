@@ -17,12 +17,12 @@ class UserController extends Controller
     public function updateProfile(Request $request)
     {
         try {
-            $validator = Validator::make($request->all(), [
-                'name' => 'string|max:60',
-                'surname' => 'string|max:60',
-                'phone_number' => 'integer',
-                'direction' => 'string|max:90',
-                'birth_date' => 'date',
+            $validator = Validator::make($request->input(), [
+                'name' => 'string|max:60|sometimes',
+                'surname' => 'string|max:60|sometimes',
+                'phone_number' => 'integer|sometimes',
+                'direction' => 'string|max:90|sometimes',
+                'birth_date' => 'date|sometimes',
             ]);
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
@@ -34,25 +34,7 @@ class UserController extends Controller
             $direction = $request->input('direction');
             $birth_date = $request->input('birth_date');
             $profile = Profile::where('user_id', $userId)->first();
-            if (is_null($profile)) {
-                $profile = new Profile([
-                    'name' => $name,
-                    'surname' => $surname,
-                    'phone_number' => $phone_number,
-                    'direction' => $direction,
-                    'birth_date' => $birth_date,
-                    'user_id' => $userId
-                ]);
-                $profile->save();
-                return response()->json(
-                    [
-                        "success" => true,
-                        "message" => "Profile created successfully",
-                        "data" => $profile
-                    ],
-                    200
-                );
-            } else {
+            if (isset($profile)) {
                 $profile->name = $name;
                 $profile->surname = $surname;
                 $profile->phone_number = $phone_number;
@@ -69,6 +51,23 @@ class UserController extends Controller
                     200
                 );
             }
+            // } else {
+            //     $profile->name = $name;
+            //     $profile->surname = $surname;
+            //     $profile->phone_number = $phone_number;
+            //     $profile->direction = $direction;
+            //     $profile->birth_date = $birth_date;
+            //     $profile->user_id = $userId;
+            //     $profile->update();
+            //     return response()->json(
+            //         [
+            //             "success" => true,
+            //             "message" => "Profile updated successfully",
+            //             "data" => $profile
+            //         ],
+            //         200
+            //     );
+            // }
         } catch (\Throwable $th) {
             Log::error("Error updating user: " . $th->getMessage());
             return response()->json([
@@ -84,12 +83,13 @@ class UserController extends Controller
             // Log::info("Get My Profile Working");
             $userId = auth()->user()->id;
             $email = auth()->user()->email;
+            $roleId = auth()->user()->role_id;
             $profile = DB::table('profiles')->where('user_id', '=', $userId)->get();
             return response(
                 [
                     "success" => true,
                     "message" => "This is your profile",
-                    "data" => [$email,$profile]
+                    "data" => [$email,$profile,$roleId]
                 ],
                 Response::HTTP_OK
             );
