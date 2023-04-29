@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use function PHPUnit\Framework\isNull;
@@ -209,6 +210,35 @@ class GameController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             Log::error("Delete Game By Id Admin Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
+    public function getAllGamesWithoutReviewUser()
+    {
+        try {
+            // Log::info("Get All Games Without Review User Working");
+            $id = auth()->user()->id;
+            $games = Game::query()
+            ->whereNotIn('id', function ($query) use ($id) {
+                $query->select('game_id')
+                    ->from('reviews')
+                    ->where('user_id', '=', $id);
+            })
+            ->get();
+            return [
+                "success" => true,
+                "message" => "These are all the games",
+                "data" => $games
+            ];
+        } catch (\Throwable $th) {
+            Log::error("Get All Games Error: " . $th->getMessage());
             return response()->json(
                 [
                     "success" => false,
