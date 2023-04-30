@@ -135,7 +135,7 @@ class GameSeeder extends Seeder
                     'score' => 9.5,
                     'genre' => "Adventure",
                     'publisher' => "LucasArts",
-                    'release_date' => "19911-12-01",
+                    'release_date' => "1991-12-01",
                 ],
                 [
                     'id' => 13,
@@ -228,7 +228,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1993-09-24",
                 ],
                 [
-                    'id' => 22,
+                    'id' => 81,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/03/30/uunderworlds-1648680562969.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Ultima Underworld: The Stygian Abyss",
                     'description' => "A first-person action RPG game in which the player explores the Stygian Abyss, battling foes and completing quests to save the world from destruction.",
