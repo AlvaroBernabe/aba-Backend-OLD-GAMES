@@ -47,6 +47,7 @@ Route::middleware('auth:sanctum', 'isAdmin')->put('/user/role/update', [RoleCont
 Route::middleware('auth:sanctum', 'isAdmin')->post('/game/new', [GameController::class, 'newGame']);
 Route::middleware('auth:sanctum', 'isAdmin')->put('/game/update/{id}', [GameController::class, 'updateGameId']);
 Route::middleware('auth:sanctum')->get('/games/all/', [GameController::class, 'getAllGames']);
+Route::get('/games/all/nonuser', [GameController::class, 'getAllGamesNonUser']);
 Route::middleware('auth:sanctum')->get('/games/all/user', [GameController::class, 'getAllGamesWithoutReviewUser']);
 Route::middleware('auth:sanctum')->post('/games/find/', [GameController::class, 'findGamesFilter']);
 Route::middleware('auth:sanctum')->get('/games/all/{id}', [GameController::class, 'getGameById']);

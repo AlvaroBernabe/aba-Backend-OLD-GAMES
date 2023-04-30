@@ -22,7 +22,7 @@ class ProfileFactory extends Factory
             'phone_number' => fake()->phoneNumber(),
             'direction' => fake()->address(),
             'birth_date' =>  fake()->dateTimeBetween('-70 years, -18 years'),
-            'user_id' => rand(5,15),
+            'user_id' => $this->faker->unique()->numberBetween(5,15),
         ];
     }
 }

@@ -135,6 +135,28 @@ class GameController extends Controller
         }
     }
 
+    public function getAllGamesNonUser()
+    {
+        try {
+            // Log::info("Get All Games Working");
+            $games = Game::query()->get();
+            return [
+                "success" => true,
+                "message" => "These are all the games",
+                "data" => $games
+            ];
+        } catch (\Throwable $th) {
+            Log::error("Get All Games Error: " . $th->getMessage());
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage()
+                ],
+                500
+            );
+        }
+    }
+
     public function findGamesFilter(Request $request,)
     {
         try {

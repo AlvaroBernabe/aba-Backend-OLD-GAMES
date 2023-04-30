@@ -228,7 +228,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1993-09-24",
                 ],
                 [
-                    'id' => 81,
+                    'id' => 22,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/03/30/uunderworlds-1648680562969.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Ultima Underworld: The Stygian Abyss",
                     'description' => "A first-person action RPG game in which the player explores the Stygian Abyss, battling foes and completing quests to save the world from destruction.",
@@ -238,7 +238,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1992-03-23",
                 ],
                 [
-                    'id' => 22,
+                    'id' => 23,
                     'game_image' => "https://miabandonaware.com/wp-content/uploads/2017/11/BattleChess.jpg",
                     'name' => "Battle Chess",
                     'description' => "A chess game in which the pieces come to life and battle it out on the board in animated sequences.",
@@ -248,7 +248,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1988-12-31",
                 ],
                 [
-                    'id' => 23,
+                    'id' => 24,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/01/12/sidmeiersciv-sq-1641950900839.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Civilization",
                     'description' => "A strategy game in which the player guides a civilization from ancient times to the modern era, managing resources, building infrastructure, and waging war against other civilizations.",
@@ -258,7 +258,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1991-09-01",
                 ],
                 [
-                    'id' => 24,
+                    'id' => 25,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/02/17/commanderkeen-sq-1645060606759.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Commander Keen",
                     'description' => "A platformer game in which the player controls a young boy named Billy Blaze who travels to alien planets to stop an evil alien race from destroying Earth.",
@@ -268,7 +268,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1990-12-14",
                 ],
                 [
-                    'id' => 25,
+                    'id' => 26,
                     'game_image' => "https://pcmedia.ign.com/pc/image/object/006/006765/688985boxart_160w.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Quest for Glory: So You Want to Be a Hero",
                     'description' => "A hybrid adventure and RPG game in which the player creates a character and embarks on a quest to become a hero, completing quests and battling monsters along the way.",
@@ -278,7 +278,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1989-10-01",
                 ],
                 [
-                    'id' => 26,
+                    'id' => 27,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/02/04/systemshock-sq4-1644000955813.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "System Shock",
                     'description' => "A first-person action RPG game in which the player explores a space station and battles rogue AI and mutants to uncover the truth behind a sinister conspiracy.",
@@ -288,7 +288,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1994-09-22",
                 ],
                 [
-                    'id' => 27,
+                    'id' => 28,
                     'game_image' => "https://assets-prd.ignimgs.com/2023/03/24/simant-1679696128032.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "SimAnt",
                     'description' => "A simulation game in which the player controls an ant colony, managing resources, battling other insects, and expanding the colony's territory.",
@@ -298,7 +298,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1991-12-31",
                 ],
                 [
-                    'id' => 28,
+                    'id' => 29,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/05/09/larry3-1652056361433.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Leisure Suit Larry 3: Passionate Patti in Pursuit of the Pulsating Pectorals",
                     'description' => "A comedic adventure game in which the player takes on the role of Patti, a friend of Larry's, who is on a quest to find a missing rock star and uncover a sinister plot.",
@@ -308,7 +308,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1989-11-01",
                 ],
                 [
-                    'id' => 29,
+                    'id' => 30,
                     'game_image' => "https://pcmedia.ign.com/pc/image/object/008/008649/StarControl2_PCBOX.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Star Control II",
                     'description' => "A space exploration and combat game in which the player commands a spaceship and travels the galaxy, interacting with alien races, gathering resources, and battling enemy ships.",
@@ -318,7 +318,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1992-11-30",
                 ],
                 [
-                    'id' => 30,
+                    'id' => 31,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/02/04/indyfateofatlantis-sq-1644002663775.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Indiana Jones and the Fate of Atlantis",
                     'description' => "An adventure game in which the player controls Indiana Jones and sets out to find the lost city of Atlantis, using archaeological skills and combat tactics to overcome obstacles.",
@@ -328,7 +328,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1992-06-01",
                 ],
                 [
-                    'id' => 31,
+                    'id' => 32,
                     'game_image' => "https://assets-prd.ignimgs.com/2023/01/28/wingcommander-1674935838935.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Wing Commander",
                     'description' => "A space combat simulation game in which the player commands a spacecraft and battles enemy ships, advancing through a storyline and earning upgrades and promotions.",
@@ -338,7 +338,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1990-09-26",
                 ],
                 [
-                    'id' => 34,
+                    'id' => 33,
                     'game_image' => "https://assets-prd.ignimgs.com/2023/01/08/heroesmm-1673204904360.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Heroes of Might and Magic",
                     'description' => "A turn-based strategy game in which the player builds and manages a kingdom, recruiting heroes, exploring the land, and engaging in battles against other factions.",
@@ -348,7 +348,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1995-04-01",
                 ],
                 [
-                    'id' => 35,
+                    'id' => 34,
                     'game_image' => "https://assets-prd.ignimgs.com/2023/04/02/lsl6-1680460509185.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Leisure Suit Larry 6: Shape Up or Slip Out!",
                     'description' => "A comedic adventure game in which the player controls Larry Laffer as he attempts to win a vacation to a luxury health spa, encountering humorous situations and romantic encounters along the way.",
@@ -358,7 +358,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1993-12-31",
                 ],
                 [
-                    'id' => 39,
+                    'id' => 35,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/03/28/warcraft-1648495554534.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Warcraft: Orcs & Humans",
                     'description' => "A real-time strategy game in which the player builds and manages a kingdom, recruiting units, gathering resources, and engaging in battles against enemy factions.",
@@ -368,7 +368,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1994-11-23",
                 ],
                 [
-                    'id' => 40,
+                    'id' => 36,
                     'game_image' => "https://assets1.ignimgs.com/2014/04/05/gabrielknight-o-r-i-g-i-n-a-l-original-menujpg-0a5e35.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Gabriel Knight: Sins of the Fathers",
                     'description' => "A point-and-click adventure game in which the player takes on the role of Gabriel Knight, a struggling writer and bookstore owner who becomes embroiled in a series of murders connected to voodoo rituals in New Orleans.",
@@ -378,7 +378,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1993-12-17",
                 ],
                 [
-                    'id' => 41,
+                    'id' => 37,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/05/13/policequest1-1652481063312.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Police Quest: In Pursuit of the Death Angel",
                     'description' => "A police procedural adventure game in which the player takes on the role of Sonny Bonds, a police officer in the fictional city of Lytton, as he investigates a string of drug-related crimes.",
@@ -388,7 +388,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1987-12-10",
                 ],
                 [
-                    'id' => 42,
+                    'id' => 38,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/02/14/lemmings-sq1-1644881071704.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Lemmings",
                     'description' => "A puzzle game in which the player guides a group of lemmings through increasingly difficult levels by assigning them tasks and abilities to avoid obstacles and reach the exit.",
@@ -398,7 +398,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1991-02-14",
                 ],
                 [
-                    'id' => 43,
+                    'id' => 39,
                     'game_image' => "https://assets-prd.ignimgs.com/2023/01/14/railroadtycoon-1673728170649.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Railroad Tycoon",
                     'description' => "A business simulation game in which the player manages a railroad company, laying tracks, managing resources, and competing against rival companies to become the dominant force in the industry.",
@@ -408,7 +408,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1990-10-15",
                 ],
                 [
-                    'id' => 44,
+                    'id' => 40,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/05/13/street-fighter-2-button-snescrop-1652485158101.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Street Fighter 2",
                     'description' => "This classic fighting game was released in 1992 and is considered one of the greatest games of all time.",
@@ -418,7 +418,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1992-02-06",
                 ],
                 [
-                    'id' => 45,
+                    'id' => 41,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/12/17/chipschallenge-1671293451816.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Chip's Challenge",
                     'description' => "This puzzle game was released in 1991 and challenges players to solve increasingly difficult levels.",
@@ -428,7 +428,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1991-11-01",
                 ],
                 [
-                    'id' => 46,
+                    'id' => 42,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/03/30/ultima7-1648674172163.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Ultima 7 Part 1: The Black Gate",
                     'description' => "This classic RPG was released in 1992 and is considered one of the greatest games of all time.",
@@ -438,7 +438,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1992-04-16",
                 ],
                 [
-                    'id' => 47,
+                    'id' => 43,
                     'game_image' => "https://upload.wikimedia.org/wikipedia/en/f/fc/ARC_Cisco_Heat_%28Cisco_Heat_-_All_American_Police_Car_Race%29.png",
                     'name' => "Cisco Heat",
                     'description' => "This racing game was released in 1991 and challenges players to compete in high-speed races.",
@@ -448,7 +448,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1991-12-31",
                 ],
                 [
-                    'id' => 48,
+                    'id' => 44,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/08/18/test-drive-the-duel-object-1660790617166.png?width=300&crop=1%3A1%2Csmart",
                     'name' => "The Duel: Test Drive 2",
                     'description' => "This racing game was released in 1989 and challenges players to compete in high-speed races.",
@@ -458,7 +458,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1989-10-31",
                 ],
                 [
-                    'id' => 49,
+                    'id' => 45,
                     'game_image' => "https://assets-prd.ignimgs.com/2023/01/22/transporttdx-1674429941083.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Transport Tycoon Deluxe",
                     'description' => "This business simulation game was released in 1995 and challenges players to build and manage a transportation network.",
@@ -468,7 +468,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1995-04-14",
                 ],
                 [
-                    'id' => 50,
+                    'id' => 46,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/03/14/operationwolf-1647221682862.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Operation Wolf",
                     'description' => "This classic shooter game was released in 1989 and challenges players to fight their way through enemy lines.",
@@ -478,7 +478,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1989-07-01",
                 ],
                 [
-                    'id' => 51,
+                    'id' => 47,
                     'game_image' => "https://pcmedia.ign.com/pc/image/object/003/003121/683616boxart_160h.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Outcast",
                     'description' => "This action-adventure game was released in 1999 and challenges players to explore an alien world.",
@@ -488,7 +488,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1999-06-30",
                 ],
                 [
-                    'id' => 52,
+                    'id' => 48,
                     'game_image' => "https://media.gamestats.com/gg/image/object/007/007836/SidMeierscolonization_PCBOX.jpg",
                     'name' => "Colonization",
                     'description' => "This strategy game was released in 1994 and challenges players to establish and manage a colony in the New World.",
@@ -498,7 +498,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1994-09-01",
                 ],
                 [
-                    'id' => 54,
+                    'id' => 49,
                     'game_image' => "https://pcmedia.ign.com/pc/image/object/855/855242/689007boxart_160w.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Wizardry 7: Crusaders of the Dark Savant",
                     'description' => "This role-playing game was released in 1992 and challenges players to explore a vast world while battling monsters and solving puzzles.",
@@ -508,8 +508,8 @@ class GameSeeder extends Seeder
                     'release_date' => "1992-11-14",
                 ],
                 [
-                    'id' => 55,
-                    'game_image' => "Duke Nukem",
+                    'id' => 50,
+                    'game_image' => "https://assets-prd.ignimgs.com/2022/04/24/dukenukem-1650832697986.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Duke Nukem",
                     'description' => "This side-scrolling shooter game was released in 1991 and challenges players to save the world from an alien invasion.",
                     'score' => 8.0,
@@ -518,7 +518,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1991-07-01",
                 ],
                 [
-                    'id' => 56,
+                    'id' => 51,
                     'game_image' => "https://assets-prd.ignimgs.com/2023/03/11/whiplash-1678564114930.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Whiplash",
                     'description' => "This racing game was released in 1995 and challenges players to race through dangerous courses and destroy their opponents.",
@@ -528,7 +528,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1995-08-31",
                 ],
                 [
-                    'id' => 57,
+                    'id' => 52,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/04/09/battlezone-1649519688612.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => 'Battlezone',
                     'description' => 'This first-person tank combat game was released in 1983 and challenges players to defeat enemy tanks and UFOs while capturing bases.',
@@ -538,7 +538,7 @@ class GameSeeder extends Seeder
                     'release_date' => '1983-11-30'
                 ],
                 [
-                    'id' => 58,
+                    'id' => 53,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/02/02/hereticexpansion-sq-1643825958468.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => 'Heretic',
                     'description' => 'This first-person shooter game was released in 1994 and challenges players to fight off hordes of demons in a fantasy world.',
@@ -548,7 +548,7 @@ class GameSeeder extends Seeder
                     'release_date' => '1994-12-23'
                 ],
                 [
-                    'id' => 59,
+                    'id' => 54,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/07/25/alleycat-1658776590870.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => 'Alley Cat',
                     'description' => 'This action game was released in 1984 and challenges players to navigate a cat through obstacles to catch mice and avoid dogs.',
@@ -558,7 +558,7 @@ class GameSeeder extends Seeder
                     'release_date' => '1984-12-31'
                 ],
                 [
-                    'id' => 60,
+                    'id' => 55,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/03/30/roadrashps-1648601093749.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => 'Road Rash',
                     'description' => 'This motorcycle racing game was released in 1996 and challenges players to race through traffic and take down opponents with weapons.',
@@ -568,7 +568,7 @@ class GameSeeder extends Seeder
                     'release_date' => '1996-09-30'
                 ],
                 [
-                    'id' => 61,
+                    'id' => 56,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/02/19/futureshock-sq-1645235967876.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => 'The Terminator: Future Shock',
                     'description' => 'This first-person shooter game was released in 1995 and challenges players to fight off Skynet and its robots in a post-apocalyptic future.',
@@ -578,7 +578,7 @@ class GameSeeder extends Seeder
                     'release_date' => '1995-12-05'
                 ],
                 [
-                    'id' => 62,
+                    'id' => 57,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/12/30/pipedream-1672422764301.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Pipe Dream",
                     'description' => "This puzzle game was released in 1989 and challenges players to build a pipeline to transport a green ooze from one side of the screen to the other.",
@@ -588,7 +588,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1989-01-01",
                 ],
                 [
-                    'id' => 63,
+                    'id' => 58,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/10/05/loom-1664996250692.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Loom",
                     'description' => "This adventure game was released in 1990 and follows the journey of Bobbin Threadbare, a young weaver who has the ability to spin magical threads.",
@@ -598,7 +598,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1990-01-01",
                 ],
                 [
-                    'id' => 64,
+                    'id' => 59,
                     'game_image' => "https://media.ign.com/games/image/object/065/065279/Mahjong-Solitaire_dl10_PS_Minis.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Mah Jongg Solitaire",
                     'description' => "This puzzle game was released in 1987 and is a solitaire version of the popular tile-based game Mahjong.",
@@ -608,7 +608,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1987-01-01",
                 ],
                 [
-                    'id' => 65,
+                    'id' => 60,
                     'game_image' => "https://macmedia.ign.com/mac/image/object/490/490721/612220.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Links 386 Pro",
                     'description' => "This sports game was released in 1992 and is a golf simulator that allows players to customize their own golf courses and compete against other players.",
@@ -618,7 +618,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1992-01-01",
                 ],
                 [
-                    'id' => 66,
+                    'id' => 61,
                     'game_image' => "https://pcmedia.ign.com/pc/image/ironblitzallies_pcbox.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Axis and Allies: Iron Blitz",
                     'description' => "A turn-based strategy game based on the board game of the same name, set during World War II.",
@@ -628,7 +628,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1999-06-30",
                 ],
                 [
-                    'id' => 67,
+                    'id' => 62,
                     'game_image' => "https://assets-prd.ignimgs.com/2023/01/26/phantasmagoria-1674716912119.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Phantasmagoria",
                     'description' => "A horror adventure game, following the story of a writer and his wife as they move into a haunted mansion.",
@@ -638,7 +638,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1995-08-24",
                 ],
                 [
-                    'id' => 68,
+                    'id' => 63,
                     'game_image' => "https://www.myabandonware.com/media/screenshots/g/gloriana-j3a/gloriana_2.jpg",
                     'name' => "Gloriana",
                     'description' => "A side-scrolling platformer, in which the player takes on the role of the queen of a kingdom fighting against a group of usurpers.",
@@ -648,7 +648,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1996-01-01",
                 ],
                 [
-                    'id' => 69,
+                    'id' => 64,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/05/13/midtownmadness-1652466735122.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Midtown Madness",
                     'description' => "A racing game set in Chicago, featuring a variety of vehicles and game modes.",
@@ -658,7 +658,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1999-02-27",
                 ],
                 [
-                    'id' => 70,
+                    'id' => 65,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/03/26/oregontrail-1648323175357.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "The Oregon Trail Deluxe",
                     'description' => "An educational game simulating a journey along the Oregon Trail during the 19th century.",
@@ -668,7 +668,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1992-01-01",
                 ],
                 [
-                    'id' => 71,
+                    'id' => 66,
                     'game_image' => "https://assets-prd.ignimgs.com/2021/12/07/mk-1992-1638899209756.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Mortal Kombat",
                     'description' => "A fighting game featuring a cast of characters with unique moves and fatalities.",
@@ -678,7 +678,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1992-10-08",
                 ],
                 [
-                    'id' => 72,
+                    'id' => 67,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/03/23/diggerhd-1648078168391.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Diggers",
                     'description' => "This puzzle game was released in 1994 and challenges players to dig through dirt to find valuable gems.",
@@ -688,7 +688,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1994-12-31",
                 ],
                 [
-                    'id' => 73,
+                    'id' => 68,
                     'game_image' => "https://assets-prd.ignimgs.com/2021/12/29/age-of-empires-2-age-pf-kings-button-1640820759986.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Age of Empires 2: The Age of Kings",
                     'description' => "This real-time strategy game was released in 1999 and challenges players to build an empire and conquer their enemies.",
@@ -698,7 +698,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1999-09-30",
                 ],
                 [
-                    'id' => 74,
+                    'id' => 69,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/01/12/civilization2-sq-1641949315751.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Civilization 2",
                     'description' => "This turn-based strategy game was released in 1996 and challenges players to build a civilization from scratch and lead it to greatness.",
@@ -708,7 +708,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1996-02-29",
                 ],
                 [
-                    'id' => 75,
+                    'id' => 70,
                     'game_image' => "https://pcmedia.ign.com/pc/image/object/013/013853/612284boxart_160w.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Dogs of War",
                     'description' => "This turn-based strategy game was released in 1996 and challenges players to lead a mercenary army and complete various missions.",
@@ -718,7 +718,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1996-10-31",
                 ],
                 [
-                    'id' => 76,
+                    'id' => 71,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/01/25/junglestrikesequel-sq-1643143378948.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Jungle Strike",
                     'description' => "This action game was released in 1995 and challenges players to complete various missions in a helicopter.",
@@ -728,9 +728,9 @@ class GameSeeder extends Seeder
                     'release_date' => "1995-06-30",
                 ],
                 [
-                    'id' => 77,
-                    'game_image' => "https://t.gamesnostalgia.com/screenshots/u/g/ugh/38417.jpg",
-                    'name' => "Ugh!",
+                    'id' => 72,
+                    'game_image' => "https://assets-prd.ignimgs.com/2022/05/21/bolo-1653155966831.jpg?width=300&crop=1%3A1%2Csmart",
+                    'name' => "Bolo",
                     'description' => "In this side-scrolling action game, players control a prehistoric man riding a pterodactyl, with the goal of collecting as many treasures as possible while avoiding obstacles and enemies.",
                     'score' => 7.5,
                     'genre' => "Action",
@@ -738,7 +738,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1992-01-01",
                 ],
                 [
-                    'id' => 78,
+                    'id' => 73,
                     'game_image' => "https://assets-prd.ignimgs.com/2022/02/04/desertstrike-sq-1644002247355.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Desert Strike: Return to the Gulf",
                     'description' => "In this helicopter-based shoot 'em up, players control a member of the U.S. military tasked with taking down a Middle Eastern dictator.",
@@ -748,7 +748,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1994-02-01",
                 ],
                 [
-                    'id' => 79,
+                    'id' => 74,
                     'game_image' => "https://codesmedia.ign.com/codes/image/object/000/000114/614185.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "Panzer General",
                     'description' => "There is a Game in There",
@@ -758,7 +758,7 @@ class GameSeeder extends Seeder
                     'release_date' => "1994-12-01",
                 ],
                 [
-                    'id' => 80,
+                    'id' => 75,
                     'game_image' => "https://assets-prd.ignimgs.com/2023/02/13/midtownmadness2-1676322357793.jpg?width=300&crop=1%3A1%2Csmart",
                     'name' => "MIDTOWN MADNESS 2",
                     'description' => "Run fast like the wind.",
@@ -766,6 +766,16 @@ class GameSeeder extends Seeder
                     'genre' => "Racing",
                     'publisher' => "Empire Interactive Europe Ltd",
                     'release_date' => "2000-09-22",
+                ],
+                [
+                    'id' => 76,
+                    'game_image' => "https://assets-prd.ignimgs.com/2023/02/28/pang-1677547701803.jpg?width=300&crop=1%3A1%2Csmart",
+                    'name' => "Pang",
+                    'description' => "Shoot fast like the wind.",
+                    'score' => 10,
+                    'genre' => "Arcade",
+                    'publisher' => "Ocean",
+                    'release_date' => "1990-05-05",
                 ],
             ]
         );
