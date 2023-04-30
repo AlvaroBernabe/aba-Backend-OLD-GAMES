@@ -180,15 +180,27 @@ class ReviewController extends Controller
         // Log::info("Get User Reviews Working");
         try {
             $id = auth()->user()->id;
-            $message = DB::table('reviews')->where('user_id', '=', $id)->where('favourite', '=', 1)->get();
+            $reviews = DB::table('reviews')->where('user_id', '=', $id)->where('favourite', '=', 1)->get();
+
+            $gameIds = $reviews->pluck('game_id');
+            $games = Game::query()->whereIn('id', $gameIds)->get(['name', 'id', 'game_image', 'score']);
+            $reviews = $reviews->map(function ($review) use ($games) {
+                $game = $games->where('id', $review->game_id)->first();
+                $review->game_image = $game->game_image;
+                $review->game_score = $game->score;
+                $review->game_title = $game->name;
+                return $review;
+            });
+
             return response()->json(
                 [
                     "success" => true,
                     "message" => "Estos son tus reviews Favoritas",
-                    "data" => $message
+                    "data" => $reviews
                 ],
                 200
             );
+            
         } catch (\Throwable $th) {
             Log::error("Get User Reviews Error: " . $th->getMessage());
             return response()->json(
@@ -226,7 +238,7 @@ class ReviewController extends Controller
         }
     }
 
-    
+
     public function deleteReviewsByUserID_Admin($id)
     {
         // Log::info("Deleted User Reviews Working");
