@@ -28,29 +28,39 @@ class UserController extends Controller
                 return response()->json($validator->errors(), 400);
             }
             $userId = auth()->user()->id;
-            $name = $request->input('name');
-            $surname = $request->input('surname');
-            $phone_number = $request->input('phone_number');
-            $direction = $request->input('direction');
-            $birth_date = $request->input('birth_date');
             $profile = Profile::where('user_id', $userId)->first();
-            if (isset($profile)) {
-                $profile->name = $name;
-                $profile->surname = $surname;
-                $profile->phone_number = $phone_number;
-                $profile->direction = $direction;
-                $profile->birth_date = $birth_date;
-                $profile->user_id = $userId;
-                $profile->update();
+
+            if (!isset($profile)) {
+                $profile = Profile::create([
+                    'name' => $request['name'],
+                    'surname' => $request['surname'],
+                    'phone_number' => $request['phone_number'],
+                    'direction' => $request['direction'],
+                    'birth_date' => $request['birth_date'],
+                    'user_id' => $userId,
+                ]);
                 return response()->json(
                     [
                         "success" => true,
-                        "message" => "Profile updated successfully",
+                        "message" => "Profile Created Successfully",
                         "data" => $profile
                     ],
                     200
                 );
             }
+
+            $profile->fill($request->only([
+                'name', 'surname', 'phone_number', 'direction', 'birth_date'
+            ]));
+            $profile->save();
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "Profile Updated Successfully",
+                    "data" => $profile
+                ],
+                200
+            );
             // } else {
             //     $profile->name = $name;
             //     $profile->surname = $surname;
@@ -89,7 +99,7 @@ class UserController extends Controller
                 [
                     "success" => true,
                     "message" => "This is your profile",
-                    "data" => [$email,$profile,$roleId]
+                    "data" => [$email, $profile, $roleId]
                 ],
                 Response::HTTP_OK
             );
@@ -147,7 +157,7 @@ class UserController extends Controller
                 [
                     "success" => true,
                     "message" => "User Details",
-                    "data" => [$userEmail,$profile]
+                    "data" => [$userEmail, $profile]
                 ],
                 200
             );
@@ -156,14 +166,14 @@ class UserController extends Controller
             return response()->json(
                 [
                     "success" => false,
-                    "message" => $th->getMessage() 
+                    "message" => $th->getMessage()
                 ],
                 500
             );
         }
     }
 
-    
+
     public function deleteUserById(Request $request, $id)
     {
         try {
@@ -192,5 +202,4 @@ class UserController extends Controller
             );
         }
     }
-
 }
