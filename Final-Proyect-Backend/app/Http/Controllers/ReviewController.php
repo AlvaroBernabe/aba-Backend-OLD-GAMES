@@ -200,7 +200,6 @@ class ReviewController extends Controller
                 ],
                 200
             );
-            
         } catch (\Throwable $th) {
             Log::error("Get User Reviews Error: " . $th->getMessage());
             return response()->json(
@@ -213,19 +212,27 @@ class ReviewController extends Controller
         }
     }
 
-    public function deleteReviewAdmin($id)
+    public function deleteReviewUser($id)
     {
         // Log::info("Deleted User Reviews Working");
         try {
-            $reviews = DB::table('reviews')->where('id', $id)->delete();
-            return response()->json(
-                [
-                    "success" => true,
-                    "message" => "Review Removed",
-                    "data" => $reviews
-                ],
-                200
-            );
+            $review = DB::table('reviews')->where('id', $id)->first();
+
+            $user_id = auth()->user()->id;
+            if ($review->user_id != $user_id) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "You are not authorized to delete this review"
+                ], 403);
+            }
+
+            DB::table('reviews')->where('id', $id)->delete();
+
+            return response()->json([
+                "success" => true,
+                "message" => "Review removed",
+                "data" => $review
+            ], 200);
         } catch (\Throwable $th) {
             Log::error("Deleted User Reviews Error: " . $th->getMessage());
             return response()->json(
@@ -239,11 +246,11 @@ class ReviewController extends Controller
     }
 
 
-    public function deleteReviewsByUserID_Admin($id)
+    public function deleteReviewsByID_Admin($id)
     {
         // Log::info("Deleted User Reviews Working");
         try {
-            $reviews = DB::table('reviews')->where('user_id', $id)->delete();
+            $reviews = DB::table('reviews')->where('id', $id)->delete();
             return response()->json(
                 [
                     "success" => true,
@@ -269,7 +276,6 @@ class ReviewController extends Controller
         try {
             // Log::info("Get All News Working");
             $news = Review::where('game_id', '!=', 0)->get();
-            $result = [];
             foreach ($news as $data) {
                 $gameId = $data->game_id;
                 $gameFind = Game::where('id', '=', $gameId)->first();

@@ -65,9 +65,9 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/review/myreviews', [ReviewController::class, 'getMyReviews']);
     Route::get('/review/favourites/not', [ReviewController::class, 'getMyLessFavourites']);
     Route::get('/review/favourites', [ReviewController::class, 'getMyFavourites']);
-    Route::delete('/review/{id}', [ReviewController::class, 'deleteReviewAdmin']);
-    Route::delete('/review/all/{id}', [ReviewController::class, 'deleteReviewsByUserID_Admin']);
+    Route::delete('/review/{id}', [ReviewController::class, 'deleteReviewUser']);
 });
+Route::middleware('auth:sanctum', 'isAdmin')->delete('/review/all/{id}', [ReviewController::class, 'deleteReviewsByID_Admin']);
 Route::middleware('auth:sanctum', 'isAdmin')->get('/reviews/all', [ReviewController::class, 'getAllReviews']);
 
 //News Controller
