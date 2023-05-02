@@ -110,7 +110,6 @@ class UserController extends Controller
             Log::info("Get All Users Working");
             $users = User::query()->get();
             $userId = $users->pluck('id', 'email');
-
             $profile = DB::table('profiles')->get();
             $profiles = Profile::query()->whereIn('user_id', $userId)->get(['name', 'user_id', 'surname', 'phone_number', 'direction', 'birth_date']);
 
