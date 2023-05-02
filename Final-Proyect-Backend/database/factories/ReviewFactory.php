@@ -16,12 +16,14 @@ class ReviewFactory extends Factory
      */
     public function definition()
     {
+        $game_id = $this->faker->numberBetween(1,77);
+        $user_id = $this->faker->numberBetween(1,9);
         return [
             'player_score' => rand(0,10),
             'player_review' => fake()->realText(),
             'favourite' => rand(0,1),
-            'game_id' => $this->faker->numberBetween(1,77),
-            'user_id' => $this->faker->numberBetween(1,5),
+            'game_id' => $game_id,
+            'user_id' => $user_id,
         ];
     }
 }

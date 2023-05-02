@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('news_image')->nullable(true);
+            $table->text('news_image')->nullable(true);
             $table->string('title')->nullable(false);
-            $table->string('summary')->nullable(false);
+            $table->text('summary', 500)->nullable(false);
             $table->unsignedBigInteger('game_id');
             $table->foreign('game_id')
             ->references('id')

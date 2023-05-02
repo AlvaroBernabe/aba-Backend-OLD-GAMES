@@ -23,7 +23,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             ProfileSeeder::class,
+            NewSeeder::class,
         ]);
-        \App\Models\Review::factory(40)->create();
+        // \App\Models\News::factory(10)->create();
+        \App\Models\Review::factory(60)->create();
+
     }
 }
