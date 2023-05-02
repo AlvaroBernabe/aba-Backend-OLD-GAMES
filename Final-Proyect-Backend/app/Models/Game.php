@@ -9,6 +9,15 @@ class Game extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'score',
+        'genre',
+        'publisher',
+        'release_date',
+    ];
+
     public function news()
     {
         return $this->belongsTo(News::class);

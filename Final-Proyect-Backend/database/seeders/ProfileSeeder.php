@@ -18,40 +18,40 @@ class ProfileSeeder extends Seeder
         DB::table('profiles')->insert(
             [
                 [
-                    'id' => 1,
+                    'id' => 6,
                     'name' => "Álvaro",
                     'surname' => "Bernabé Alonso",
                     'phone_number' => 666555442,
                     'direction' => "calle falsa n.257",
                     'birth_date' => "1993-10-10",
-                    'user_id' => 1,
+                    'user_id' => 6,
                 ],
                 [
-                    'id' => 2,
+                    'id' => 7,
                     'name' => "Laura",
                     'surname' => "Sanchez",
                     'phone_number' => 987654321,
                     'direction' => "calle auténtica n.257",
                     'birth_date' => "1993-03-03",
-                    'user_id' => 2,
+                    'user_id' => 7,
                 ],
                 [
-                    'id' => 3,
+                    'id' => 8,
                     'name' => "Alyna",
                     'surname' => "Nastas",
                     'phone_number' => 666666666,
                     'direction' => "calle verdadera n.257",
                     'birth_date' => "1992-02-02",
-                    'user_id' => 3,
+                    'user_id' => 8,
                 ],
                 [
-                    'id' => 4,
+                    'id' => 9,
                     'name' => "El Amigo Mario",
                     'surname' => "Buena Gente",
                     'phone_number' => 123456789,
                     'direction' => "calle casi auténtica n.257",
                     'birth_date' => "1991-01-01",
-                    'user_id' => 4,
+                    'user_id' => 9,
                 ]
             ]
         );

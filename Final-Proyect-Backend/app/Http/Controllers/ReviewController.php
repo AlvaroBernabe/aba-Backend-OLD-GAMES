@@ -203,7 +203,6 @@ class ReviewController extends Controller
             }
 
             DB::table('reviews')->where('id', $id)->delete();
-
             return response()->json(
                 [
                     "success" => true,

@@ -16,13 +16,19 @@ class ProfileFactory extends Factory
      */
     public function definition()
     {
-        return [
-            'name' => fake()->name(),
-            'surname' => fake()->lastName(),
-            'phone_number' => fake()->phoneNumber(),
-            'direction' => fake()->address(),
-            'birth_date' =>  fake()->dateTimeBetween('-70 years, -18 years'),
-            'user_id' => $this->faker->unique()->numberBetween(5,15),
-        ];
+        $user_id = $this->faker->unique()->numberBetween(1,5);
+        
+        try {
+            return [
+                'name' => $this->faker->name(),
+                'surname' => $this->faker->lastName(),
+                'phone_number' => $this->faker->phoneNumber(),
+                'direction' => $this->faker->address(),
+                'birth_date' =>  $this->faker->dateTimeBetween('-70 years, -18 years'),
+                'user_id' => $user_id,
+            ];
+        } catch (\Exception $e) {
+            return $this->definition();
+        }
     }
 }
