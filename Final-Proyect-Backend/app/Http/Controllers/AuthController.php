@@ -133,7 +133,6 @@ class AuthController extends Controller
             Log::info("User Login Working");
 
             $validator = Validator::make($request->all(), [
-                'email' => 'required|string|email|max:70|unique:users',
                 'password' => ['required', 'string', 'max:70', Password::min(8)->mixedCase()->numbers()->symbols()]
             ]);
 
@@ -147,26 +146,26 @@ class AuthController extends Controller
             $password = $request->input('password');
             $user_login = User::where('id', $userId)->first();
 
-            if ($user_login->id == $userId) {
-                $user_login->id = $userId;
-                $user_login->email = $email;
-                $user_login->password = bcrypt($password);
-                $user_login->update();
-
-                return response()->json(
-                    [
-                        "success" => true,
-                        "message" => "User Login Updated successfully",
-                        "data" => $user_login
-                    ],
-                    200
-                );
-            } else {
+            if (!($user_login->id == $userId)) {
                 return response()->json([
                     'success' => false,
                     'message' => 'You can´t update other users'
                 ], 400);
             }
+
+            $user_login->id = $userId;
+            $user_login->email = $email;
+            $user_login->password = bcrypt($password);
+            $user_login->update();
+
+            return response()->json(
+                [
+                    "success" => true,
+                    "message" => "User Login Updated successfully",
+                    "data" => $user_login
+                ],
+                200
+            );
         } catch (\Throwable $th) {
             Log::error("Logout error: " . $th->getMessage());
 
