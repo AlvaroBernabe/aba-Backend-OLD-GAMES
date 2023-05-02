@@ -37,7 +37,7 @@ class IsAdmin
             return response()->json(
                 [
                     "success" => false,
-                    "message" => $th->getMessage() . 'You are in isAdminToken' . $userRole
+                    "message" => $th->getMessage() . 'You are in isAdminToken'
                 ],
                 500
             );

@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-
-
-
     public function register(Request $request)
     {
         try {
@@ -25,71 +22,48 @@ class AuthController extends Controller
                 'email' => 'required|string|email|max:70|unique:users',
                 'password' => ['required', 'string', 'max:70', Password::min(8)->mixedCase()->numbers()->symbols()]
             ]);
+
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
+
             $user = User::create([
                 'email' => $request['email'],
                 'password' => bcrypt($request['password']),
                 'role_id' => 2,
             ]);
-            // $token = $user->createToken('apiToken')->plainTextToken;
             $res = [
                 "success" => true,
-                "message" => "User registered successfully",
+                "message" => "User Registered Successfully",
                 'data' => $user,
-                // "token" => $token
             ];
+
             return response()->json(
                 $res,
                 Response::HTTP_CREATED
             );
         } catch (\Throwable $th) {
-            Log::error("Register error: " . $th->getMessage());
+            Log::error("Register User Error: " . $th->getMessage());
+
             return response()->json(
                 [
                     "success" => false,
-                    "message" => "Register error"
+                    "message" => "Register Error"
                 ],
                 500
             );
         }
     }
 
-
-
-    //ESTE ES EL LOGIN CON JWT
-    // public function login(Request $request)
-    // {
-    //     $request->validate([
-    //         'email' => 'required|string|email',
-    //         'password' => 'required|string',
-    //     ]);
-    //     $user = User::where('email', $request['email'])->first();
-    //     $token = auth()->login($user);
-    //     if (!$token) {
-    //         return response()->json([
-    //             'status' => 'error',
-    //             'message' => 'Unauthorized',
-    //         ], 401);
-    //     }
-
-    //     return response()->json([
-    //             'status' => 'success',
-    //             'authorisation' => [
-    //                 'token' => $token,
-    //                 'user' => $user,
-    //             ]
-    //         ]);
-    // }
-
     public function login(Request $request)
     {
         try {
+            Log::info("Login User Working");
             $request->validate([
                 'email' => 'required|string|email',
                 'password' => 'required|string',
             ]);
+
             $user = User::query()->where('email', $request['email'])->first();
             if (!$user) {
                 return response(
@@ -97,19 +71,17 @@ class AuthController extends Controller
                     Response::HTTP_NOT_FOUND
                 );
             }
+
             if (!Hash::check($request['password'], $user->password)) {
                 return response(["success" => true, "message" => "Email or password are invalid"], Response::HTTP_NOT_FOUND);
             };
 
-            // $role_id = $user->role_id;
             $token = $user->createToken('apiToken')->plainTextToken;
-            // $token = $user->createToken('auth_token', [$role_id])->accessToken;
-
             $res = [
                 "success" => true,
-                "message" => "User logged successfully",
+                "message" => "User Logged Successfully",
                 "token" => $token,
-                "data" => $user, 
+                "data" => $user,
             ];
             return response()->json(
                 $res,
@@ -117,10 +89,11 @@ class AuthController extends Controller
             );
         } catch (\Throwable $th) {
             Log::error("Login error: " . $th->getMessage());
+
             return response()->json(
                 [
                     "success" => false,
-                    "message" => "Login error"
+                    "message" => "Login Error"
                 ],
                 500
             );
@@ -130,12 +103,10 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         try {
-            // Log::info("Logout User Working");
-            // $request->bearerToken->delete();
-            auth()->logout();
+            Log::info("Logout User Working");
+            $token = $request->user()->currentAccessToken();
+            $token->delete();
 
-            // $token = PersonalAccessToken::findToken($accessToken);
-            // $request;
             return response(
                 [
                     "success" => true,
@@ -145,10 +116,11 @@ class AuthController extends Controller
             );
         } catch (\Throwable $th) {
             Log::error("Logout error: " . $th->getMessage());
+
             return response()->json(
                 [
                     "success" => false,
-                    "message" => "Profile error" . $request
+                    "message" => "Logout error"
                 ],
                 Response::HTTP_INTERNAL_SERVER_ERROR
             );
@@ -158,28 +130,29 @@ class AuthController extends Controller
     public function changeLogin(Request $request)
     {
         try {
-            // Log::info("Change User Login Working");
+            Log::info("User Login Working");
+
             $validator = Validator::make($request->all(), [
-                // 'email' => 'required|string|email|max:70|unique:users',
+                'email' => 'required|string|email|max:70|unique:users',
                 'password' => ['required', 'string', 'max:70', Password::min(8)->mixedCase()->numbers()->symbols()]
             ]);
+
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
+
             $userId = auth()->user()->id;
             $email = auth()->user()->email;
-            // $email = $request->input('email');
+
             $password = $request->input('password');
             $user_login = User::where('id', $userId)->first();
+
             if ($user_login->id == $userId) {
                 $user_login->id = $userId;
                 $user_login->email = $email;
                 $user_login->password = bcrypt($password);
                 $user_login->update();
-                // $accessToken = $request->bearerToken();
-                // $token = PersonalAccessToken::findToken($accessToken);
-                // $token->delete();
-                // $token = $user_login->createToken('apiToken')->plainTextToken;
+
                 return response()->json(
                     [
                         "success" => true,
@@ -196,6 +169,7 @@ class AuthController extends Controller
             }
         } catch (\Throwable $th) {
             Log::error("Logout error: " . $th->getMessage());
+
             return response()->json(
                 [
                     "success" => false,
