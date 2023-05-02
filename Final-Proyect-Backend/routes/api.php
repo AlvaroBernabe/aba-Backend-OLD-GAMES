@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
 // AuthController
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -44,12 +49,12 @@ Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
 Route::middleware('auth:sanctum', 'isAdmin')->put('/user/role/update', [RoleController::class, 'changeUserToAdmin']);
 
 //Game Controller
-
 Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
     Route::post('/game/new', [GameController::class, 'newGame']);
     Route::put('/game/update/{id}', [GameController::class, 'updateGameId']);
     Route::delete('/game/{id}', [GameController::class, 'deleteGameByIdAdmin']);
 });
+
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/games/all/user', [GameController::class, 'getAllGamesWithoutReviewUser']);
     Route::post('/games/find/', [GameController::class, 'findGamesFilter']);
@@ -67,11 +72,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/review/favourites', [ReviewController::class, 'getMyFavourites']);
     Route::delete('/review/{id}', [ReviewController::class, 'deleteReviewUser']);
 });
+
 Route::middleware('auth:sanctum', 'isAdmin')->delete('/review/all/{id}', [ReviewController::class, 'deleteReviewsByID_Admin']);
 Route::middleware('auth:sanctum', 'isAdmin')->get('/reviews/all', [ReviewController::class, 'getAllReviews']);
 
 //News Controller
-
 Route::group(['middleware' => ['auth:sanctum', 'isAdmin']], function () {
     Route::post('/news/new', [NewsController::class, 'newNews']);
     Route::put('/news/update/{id}', [NewsController::class, 'updateNewsId']);
