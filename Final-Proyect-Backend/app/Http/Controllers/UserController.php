@@ -17,16 +17,19 @@ class UserController extends Controller
     public function updateProfile(Request $request)
     {
         try {
+            Log::info("Update Profile Working");
             $validator = Validator::make($request->input(), [
-                'name' => 'string|max:60|sometimes',
-                'surname' => 'string|max:60|sometimes',
-                'phone_number' => 'integer|sometimes',
-                'direction' => 'string|max:90|sometimes',
+                'name' => 'string|max:70|sometimes',
+                'surname' => 'string|max:80|sometimes',
+                'phone_number' => 'integer|max:40|sometimes',
+                'direction' => 'string|max:110|sometimes',
                 'birth_date' => 'date|sometimes',
             ]);
+
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
+
             $userId = auth()->user()->id;
             $profile = Profile::where('user_id', $userId)->first();
 
@@ -39,6 +42,7 @@ class UserController extends Controller
                     'birth_date' => $request['birth_date'],
                     'user_id' => $userId,
                 ]);
+
                 return response()->json(
                     [
                         "success" => true,
@@ -53,6 +57,7 @@ class UserController extends Controller
                 'name', 'surname', 'phone_number', 'direction', 'birth_date'
             ]));
             $profile->save();
+
             return response()->json(
                 [
                     "success" => true,
@@ -61,25 +66,9 @@ class UserController extends Controller
                 ],
                 200
             );
-            // } else {
-            //     $profile->name = $name;
-            //     $profile->surname = $surname;
-            //     $profile->phone_number = $phone_number;
-            //     $profile->direction = $direction;
-            //     $profile->birth_date = $birth_date;
-            //     $profile->user_id = $userId;
-            //     $profile->update();
-            //     return response()->json(
-            //         [
-            //             "success" => true,
-            //             "message" => "Profile updated successfully",
-            //             "data" => $profile
-            //         ],
-            //         200
-            //     );
-            // }
         } catch (\Throwable $th) {
             Log::error("Error updating user: " . $th->getMessage());
+
             return response()->json([
                 'success' => true,
                 'message' => 'User data could not be updated',
@@ -90,21 +79,21 @@ class UserController extends Controller
     public function myProfile()
     {
         try {
-            // Log::info("Get My Profile Working");
-            $userId = auth()->user()->id;
-            $email = auth()->user()->email;
-            $roleId = auth()->user()->role_id;
-            $profile = DB::table('profiles')->where('user_id', '=', $userId)->get();
+            Log::info("Get My Profile Working");
+            $user = auth()->user();
+            $profile = DB::table('profiles')->where('user_id', '=', $user->id)->get();
+
             return response(
                 [
                     "success" => true,
                     "message" => "This is your profile",
-                    "data" => [$email, $profile, $roleId]
+                    "data" => [$user->email, $profile, $user->role_id]
                 ],
                 Response::HTTP_OK
             );
         } catch (\Throwable $th) {
             Log::error("Get my Profile error: " . $th->getMessage());
+
             return response()->json(
                 [
                     "success" => false,
@@ -118,16 +107,19 @@ class UserController extends Controller
     public function getAllUsers()
     {
         try {
-            // Log::info("Get All Users Working");
+            Log::info("Get All Users Working");
             $users = User::query()->get();
             $userId = $users->pluck('id', 'email');
+
             $profile = DB::table('profiles')->get();
-            $perfiles = Profile::query()->whereIn('user_id', $userId)->get(['name', 'user_id', 'surname', 'phone_number', 'direction', 'birth_date']);
-            $profile = $users->map(function ($datos) use ($perfiles) {
-                $usuario = $perfiles->where('user_id', $datos->id)->first();
+            $profiles = Profile::query()->whereIn('user_id', $userId)->get(['name', 'user_id', 'surname', 'phone_number', 'direction', 'birth_date']);
+
+            $profile = $users->map(function ($datos) use ($profiles) {
+                $usuario = $profiles->where('user_id', $datos->id)->first();
                 $datos->perfil = $usuario;
                 return $datos;
             });
+
             return [
                 "success" => true,
                 "message" => "These are all the users",
@@ -137,6 +129,7 @@ class UserController extends Controller
             ];
         } catch (\Throwable $th) {
             Log::error("Get All Users error: " . $th->getMessage());
+
             return response()->json(
                 [
                     "success" => false,
@@ -150,19 +143,21 @@ class UserController extends Controller
     public function getUserDetailsByUserId(Request $request, $id)
     {
         try {
+            Log::info("Get Users Details By ID Working");
             $user = User::query()->find($id);
-            $userEmail = $user->email;
             $profile = DB::table('profiles')->where('user_id', '=', $id)->get();
+
             return response()->json(
                 [
                     "success" => true,
                     "message" => "User Details",
-                    "data" => [$userEmail, $profile]
+                    "data" => [$user->email, $profile]
                 ],
                 200
             );
         } catch (\Throwable $th) {
-            Log::error("Get User Details By Id error: " . $th->getMessage());
+            Log::error("Get User Details By ID error: " . $th->getMessage());
+
             return response()->json(
                 [
                     "success" => false,
@@ -179,20 +174,22 @@ class UserController extends Controller
         try {
             Log::info("Delete User By Id Working");
             $user = User::find($id);
-            if ($user->role_id != 1) {
-                User::destroy($id);
-                return response()->json([
-                    'success' => true,
-                    'message' => 'User successfully deleted',
-                ], 200);
-            } else {
+
+            if (!($user->role_id != 1)) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'You cant delete Yourself or Other Admin'
+                    'message' => 'You can´t delete Yourself or Other Admin'
                 ], 400);
             }
+
+            User::destroy($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'User successfully deleted',
+            ], 200);
         } catch (\Throwable $th) {
             Log::error("Delete User By Id error: " . $th->getMessage());
+
             return response()->json(
                 [
                     "success" => false,
