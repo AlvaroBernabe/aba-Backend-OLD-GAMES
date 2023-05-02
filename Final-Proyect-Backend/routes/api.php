@@ -66,7 +66,7 @@ Route::get('/games/alls/nonuser', [GameController::class, 'getAllGamesNotUser'])
 
 //Review Controller
 Route::group(['middleware' => 'auth:sanctum'], function () {
-    Route::post('/review/new', [ReviewController::class, 'newReview']);
+    Route::post('/review/new', [ReviewController::class, 'newReviewAndUpdate']);
     Route::get('/review/myreviews', [ReviewController::class, 'getMyReviews']);
     Route::get('/review/favourites/not', [ReviewController::class, 'getMyLessFavourites']);
     Route::get('/review/favourites', [ReviewController::class, 'getMyFavourites']);
