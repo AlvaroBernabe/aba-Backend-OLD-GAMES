@@ -62,7 +62,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/games/all/', [GameController::class, 'getAllGames']);
 });
 
-Route::get('/games/alls/nonuser', [GameController::class, 'getAllGamesNonUser']);
+Route::get('/games/alls/nonuser', [GameController::class, 'getAllGamesNotUser']);
 
 //Review Controller
 Route::group(['middleware' => 'auth:sanctum'], function () {
