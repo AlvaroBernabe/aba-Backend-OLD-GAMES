@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Role;
 use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
@@ -16,18 +17,30 @@ class IsAdmin
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-        public function handle(Request $request, Closure $next)
-        {
-            Log::info("Middleware");
-            $userId = auth()->user()->id;
-            $user = User::find($userId);
-            $role = $user->role_id;
-            if ($role != 1) {
+    public function handle(Request $request, Closure $next)
+    {
+        try {
+            Log::info("Middleware isAdmin");
+            $userId = auth()->user()->role_id;
+            $userRole = Role::find($userId);
+            $roleName = $userRole->name;
+            if (!($roleName === 'Admin')) {
                 return response()->json([
-                    'success' => true,
-                    'message' => "Unauthorized"
+                    'success' => false,
+                    'message' => "You Don´t Have The Power"
                 ]);
             }
-        return $next($request);
+            return $next($request);
+        } catch (\Throwable $th) {
+            Log::error("Deleted User Reviews Error: " . $th->getMessage());
+
+            return response()->json(
+                [
+                    "success" => false,
+                    "message" => $th->getMessage() . 'You are in isAdminToken' . $userRole
+                ],
+                500
+            );
+        }
     }
 }
