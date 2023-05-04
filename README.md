@@ -21,10 +21,10 @@
 The objective of the project is to build both a back and a Front of it, complying with self-imposed minimums, but validated by the teachers.
 
 ## About the project
-<p>My project consists of creating a library of Abandonware or Freeware games that companies no longer sell, with which the user, once he logs in, can search the catalog of games available under such a term as well as add favorites and see different aspects of each one.</p>
-<p>Something like Steam but with games that the companies have abandoned.</p>
-<p>The technologies that I will use for the Backend PHP with Laravel, and for the Front HTML, CSS, React Vite, Bootstrap and Redux.</p>
-Trough this API you can manage the next Endpoints:
+<p>The objective of the project is to develop a backend and frontend for a library of Abandonware and Freeware games. The project will comply with self-imposed minimum requirements and be validated by teachers.</p>
+<p>The library will allow users to search for games, add favorites, and view detailed information about each game. The library will focus on games that are no longer sold by companies.</p>
+<p>The backend will be developed using PHP with Laravel, and the frontend will use HTML, CSS, React Vite, Bootstrap, and Redux.</p>
+The API will provide endpoints to manage the following features:
 
 - Welcome Test.
 - Register User.
@@ -37,6 +37,8 @@ Trough this API you can manage the next Endpoints:
 - Get Users Details as Admin.
 - Delete Users as Admin (you can´t delete yourself or other Admin).
 - Change user Role to Admin.
+- New Game as Admin.
+- Update Game as Admin.
 - Get All Games Without Review as User.
 - Get All Games As User.
 - Get All Games Without Token.
@@ -76,7 +78,7 @@ Used tech:
 
 ## Installation
 This is my Collection for Postman, you can download with all the EndPoints.
-[Final Proyect Back.postman_collection.zip](https://github.com/AlvaroBernabe/aba-geekshubs-fsd-val-Backend-Final-Proyect/files/11398928/Final.Proyect.Back.postman_collection.zip)
+[Final Proyect Back.postman_collection.zip](https://github.com/AlvaroBernabe/aba-geekshubs-fsd-val-Backend-Final-Proyect/files/11400115/Final.Proyect.Back.postman_collection.zip)
 
 
 
@@ -90,6 +92,8 @@ Rename the .env.example to .env and configure the env file to match your Docker 
 php artisan migrate
 5. ``` $ Execute seeders ``` 
 php artisan db:seed
+5.5  If seeders doesn´t finish correcly, keep trying with :D
+php artisan migrate:fresh --seed 
 6. ``` $ php artisan serve ``` 
 7. You are ready to play with Docker or Thunder Client.
 
@@ -98,56 +102,160 @@ php artisan db:seed
 <summary>Endpoints</summary>
 
 
-    - WELCOME
-            GET http://127.0.0.1:8000/api/welcome
- ![1-Welcome](https://user-images.githubusercontent.com/122753448/231732749-4e953af9-eb04-4899-b37e-464d4e93d585.png)
+    - WELLCOME
+            GET http://127.0.0.1:8000/api/
+<img width="358" alt="30- Wellcome" src="https://user-images.githubusercontent.com/122753448/236261970-b5a79340-f5f9-4f36-8e73-0e557e6321da.png">
 
-
+    
     - REGISTER
             POST http://127.0.0.1:8000/api/register
-<img width="361" alt="2- Register User" src="https://user-images.githubusercontent.com/122753448/231733129-c6231cb0-7051-4024-9e9e-0f52e97c006c.png">
+<img width="314" alt="1Register" src="https://user-images.githubusercontent.com/122753448/236270535-1489a67a-2ad8-4e0f-86d2-a600ff18ee1d.png">
+
 
 
     - LOGIN
             POST http://127.0.0.1:8000/api/login
-<img width="340" alt="3- Login User" src="https://user-images.githubusercontent.com/122753448/231733512-74317628-4665-438e-a442-5f0bf0ffe2d5.png">
-
-
-    - UPDATE PROFILE
-            PUT http://127.0.0.1:8000/api/profile/update
-<img width="314" alt="4-Update Profile" src="https://user-images.githubusercontent.com/122753448/231733701-80a739ee-c13e-452e-ad0f-ca0a8c5db889.png">
-
-
-    - GET MY PROFILE
-            GET http://127.0.0.1:8000/api/profile
-<img width="582" alt="5- Get My Profile" src="https://user-images.githubusercontent.com/122753448/231733990-17be1bf1-8a8f-4aad-bb64-9548171f4bca.png">
+<img width="367" alt="2- Login" src="https://user-images.githubusercontent.com/122753448/236270547-f83696ba-2df2-494e-b301-33d3254b2434.png">
 
 
     - LOGOUT
             POST  http://127.0.0.1:8000/api/logout
-<img width="592" alt="6 - Logout" src="https://user-images.githubusercontent.com/122753448/231734231-7d595769-d7e2-4152-8f1d-55f9b775571f.png">
+<img width="602" alt="6- Logout" src="https://user-images.githubusercontent.com/122753448/236270600-477d7d8e-931a-4a70-aad9-315a108f3cc9.png">
+
+    
+    - UPDATE PASSWORD
+            PUT  http://127.0.0.1:8000/api/updatelogin
+<img width="365" alt="5- Update Password" src="https://user-images.githubusercontent.com/122753448/236277717-0614fdf1-0989-405a-b4f2-b2a0d0a74acc.png">
+
+    
+    - UPDATE/CREATE PROFILE
+            PUT http://127.0.0.1:8000/api/profile/update
+![3-profile](https://user-images.githubusercontent.com/122753448/236277097-55844767-d28e-48a4-9217-b0a3b038ddde.gif)
 
 
-    - CREATE MESSAGE
-            POST  http://127.0.0.1:8000/api/comments/create
-<img width="414" alt="7- Create Message" src="https://user-images.githubusercontent.com/122753448/231734321-2220e4f7-583c-47da-9d8a-7c9cf448bfab.png">
+    - GET MY PROFILE
+            GET http://127.0.0.1:8000/api/profile
+<img width="305" alt="4- Get My Profile" src="https://user-images.githubusercontent.com/122753448/236277125-444df77d-600c-4e97-bc67-b6101656617a.png">
 
 
-    - SEE OWN MESSAGE
-            GET  http://127.0.0.1:8000/api/mycomments/view
-<img width="605" alt="8- Get My Message" src="https://user-images.githubusercontent.com/122753448/231738158-90f43283-81e2-49f6-bbb9-9549cd162f3f.png">
+    - GET ALL USERS AS ADMIN
+            GET http://127.0.0.1:8000/api/users/all
+<img width="575" alt="7- Get All Users" src="https://user-images.githubusercontent.com/122753448/236277380-8d4c663d-d015-4cb2-b139-1a60238548ff.png">
 
 
- 
+    - GET USERS DETAILS AS ADMIN
+            GET http://127.0.0.1:8000/api/users/all/details/2
+<img width="599" alt="8- Get User Details ID" src="https://user-images.githubusercontent.com/122753448/236281407-558744ae-40f9-44cd-a288-641437e5e42d.png">
+
+            
+    - DELETE USERS AS ADMIN
+            DELETE http://127.0.0.1:8000/api/users/all/destroy/2
+<img width="560" alt="9- Delete User" src="https://user-images.githubusercontent.com/122753448/236281455-26400796-2e42-4a36-bf95-5a8ebc55eecc.png">
+
+            
+    - CHANGE USERS ROLE
+            PUT http://127.0.0.1:8000/api/user/role/update
+<img width="375" alt="10- Update Role" src="https://user-images.githubusercontent.com/122753448/236281513-a40aca39-fb77-433b-b76d-9481537a85ec.png">
+
+            
+    - NEW GAME AS ADMIN
+            POST http://127.0.0.1:8000/api/game/new
+<img width="527" alt="11- New Game Admin" src="https://user-images.githubusercontent.com/122753448/236282117-83b9529b-5b8a-4da4-ae3d-3230a7d54966.png">
+
+            
+     - UPDATE GAME AS ADMIN
+            PUT http://127.0.0.1:8000/api/game/update/77
+<img width="532" alt="12- Update Game Admin" src="https://user-images.githubusercontent.com/122753448/236282136-6ea95264-67e7-4918-af48-2bdc67f1965c.png">
+
+            
+    - GET ALL GAMES WHITOUT REVIEW AS USER
+            GET http://127.0.0.1:8000/api/games/all/user
+<img width="604" alt="13- Get All Games without Review" src="https://user-images.githubusercontent.com/122753448/236281562-f859159c-e72b-466a-a937-593e6e0ff781.png">
 
 
+    - GET ALL GAMES AS USER
+            GET http://127.0.0.1:8000/api/games/all
+<img width="632" alt="14- Get All Games User" src="https://user-images.githubusercontent.com/122753448/236282243-148bfa4d-ef42-404a-8d4f-eb95713a90ee.png">
+
+            
+    - GET ALL GAMES WITHOUT TOKEN
+            GET http://127.0.0.1:8000/api/games/alls/nonuser
+ <img width="612" alt="15- Get All Games No Token" src="https://user-images.githubusercontent.com/122753448/236282337-6e9e3561-0f51-4abb-9a84-94343cccdce2.png">
+
+            
+    - SEARCH GAMES WITH FILTER
+            POST http://127.0.0.1:8000/api/games/find/
+![16 FILTER](https://user-images.githubusercontent.com/122753448/236282543-397b6055-5ab3-421b-8c16-10f4c15b2ed3.gif)
+
+            
+     - GET GAME BY ID
+            GET http://127.0.0.1:8000/api/games/all/24
+<img width="686" alt="17- Get Games By ID" src="https://user-images.githubusercontent.com/122753448/236283687-8a9ff4c9-ddc5-45af-9213-19143ea09afd.png">
+
+            
+    - NEW REVIEW/UPDATE REVIEW AS USER
+            POST http://127.0.0.1:8000/api/review/new
+<img width="437" alt="19- New Review" src="https://user-images.githubusercontent.com/122753448/236283718-c929c53b-260b-4ab5-baf4-8c5113fafc7f.png">
+            
+            
+     - GET MY REVIEWS AS USER
+            GET http://127.0.0.1:8000/api/review/myreviews
+<img width="668" alt="26- Get My Reviews" src="https://user-images.githubusercontent.com/122753448/236283787-020060a1-1591-4b6c-b6cf-6b85c806ea50.png">
+
+            
+    - GET MY REVIEWS WHITOUT FAVOURITES
+            GET http://127.0.0.1:8000/api/review/favourites/not
+<img width="490" alt="20- Get less favouritespng" src="https://user-images.githubusercontent.com/122753448/236283861-fd94fa24-dad0-4ee2-bc0e-3994d7f3b7c1.png">
+
+    - GET MY REVIEWS WITH FAVOURITES
+            GET http://127.0.0.1:8000/api/review/favourites/
+<img width="498" alt="21- Get most favourites" src="https://user-images.githubusercontent.com/122753448/236284693-4b22aef3-f22f-4f60-bcda-a573e5e3d714.png">
+
+            
+    - DELETE YOUR REVIEW AS USER
+            DELETE http://127.0.0.1:8000/api/review/15
+![27DELETE](https://user-images.githubusercontent.com/122753448/236285046-1711dbe0-e0d2-47a7-9ea7-a4adc970b8d5.gif)
+
+            
+     - DELETE REVIEWS BY ID AS ADMIN
+            DELETE http://127.0.0.1:8000/api/review/all/14
+<img width="526" alt="28-Delete Reviews By Id Admin" src="https://user-images.githubusercontent.com/122753448/236285064-5430cf50-4761-4c55-ade1-62546a071053.png">
+
+            
+    - GET ALL REVIEWS AS ADMIN
+            GET http://127.0.0.1:8000/api/reviews/all
+<img width="595" alt="29- Get All Reviews" src="https://user-images.githubusercontent.com/122753448/236285087-da7fc8a6-120e-46c9-85f2-c81eccda57e0.png">
+
+           
+    - NEW NEWS AS ADMIN
+            POST http://127.0.0.1:8000/api/news/new
+<img width="431" alt="22-  New News Admin" src="https://user-images.githubusercontent.com/122753448/236285839-6f52c96b-5658-4628-8c50-03d9de618c46.png">
+
+
+     - UPDATE NEWS BY ID AS ADMIN
+            PUT http://127.0.0.1:8000/api/news/update/2
+<img width="479" alt="25- Update News ID" src="https://user-images.githubusercontent.com/122753448/236285886-a507e95b-2802-43c1-b780-58bbcb561bbe.png">
+
+            
+    - DELETE NEWS BY ID AS ADMIN
+            DELETE http://127.0.0.1:8000/api/news/all/destroy/1
+<img width="488" alt="24-  Delete News By ID" src="https://user-images.githubusercontent.com/122753448/236285899-533244bc-f641-44eb-ac74-134a7712eab6.png">
+
+           
+    - GET ALL NEWS
+            GET http://127.0.0.1:8000/api/news/all/
+<img width="688" alt="23-  Get All News" src="https://user-images.githubusercontent.com/122753448/236285940-c42f82e2-8923-4a7d-8837-2bfe2ad816c1.png">
+
+               
+           
 </details>
 
 ## Known bugs:
 
-<p> - There are a few gif in the readme with improvement to be made.</p>
-<p> - Factorys (News and Profile) works most of the time but sometimes they fail to seed correctly and need to refresh.</p>
-<p> - There is probably more but Good Luck Have Fun to All :)</p>
+<p>There are a few GIFs in the readme with improvements that can be made.</p>
+<p>The factories (News and Profile) work most of the time but sometimes fail to seed correctly and need to be refreshed.</p>
+<p>There are a few messages that could be improved with more description.</p>
+<p>There may be other issues to address, but good luck and have fun to all!</p>
 
 
 ## Licence
