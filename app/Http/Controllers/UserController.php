@@ -21,7 +21,7 @@ class UserController extends Controller
             $validator = Validator::make($request->input(), [
                 'name' => 'string|max:70|sometimes',
                 'surname' => 'string|max:80|sometimes',
-                'phone_number' => 'integer|max:40|sometimes',
+                'phone_number' => 'integer|max:999999999999999|sometimes',
                 'direction' => 'string|max:110|sometimes',
                 'birth_date' => 'date|sometimes',
             ]);

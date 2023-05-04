@@ -127,7 +127,7 @@ class AuthController extends Controller
         }
     }
 
-    public function changeLogin(Request $request)
+    public function changePassword(Request $request)
     {
         try {
             Log::info("User Login Working");

@@ -30,7 +30,7 @@ Route::get('/', function () {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
-Route::middleware('auth:sanctum')->put('/updatelogin', [AuthController::class, 'changeLogin']);
+Route::middleware('auth:sanctum')->put('/updatelogin', [AuthController::class, 'changePassword']);
 
 
 // User Controller

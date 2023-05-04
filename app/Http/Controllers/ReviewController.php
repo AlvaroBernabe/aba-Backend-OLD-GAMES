@@ -131,7 +131,7 @@ class ReviewController extends Controller
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "Estos son todas tus reviews",
+                    "message" => "These are all your less favourites Reviews",
                     "data" => $message
                 ],
                 200
@@ -170,7 +170,7 @@ class ReviewController extends Controller
             return response()->json(
                 [
                     "success" => true,
-                    "message" => "Estos son tus reviews Favoritas",
+                    "message" => "These are your Favourites Games",
                     "data" => $reviews
                 ],
                 200
