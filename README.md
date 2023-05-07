@@ -83,7 +83,7 @@ This is my Collection for Postman, you can download with all the EndPoints.
 
 
 1. Clone repository in terminal or bash / or download manually the repo.
-git clone https://github.com/AlvaroBernabe/-aba-geekshubs-fsd-val-Project6---Laravel.git
+git clone https://github.com/AlvaroBernabe/aba-geekshubs-fsd-val-Backend-Final-Proyect.git
 2. Install dependencies.
 composer install
 3. Connect repo with database, through env file.
