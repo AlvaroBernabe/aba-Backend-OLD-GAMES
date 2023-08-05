@@ -20,7 +20,7 @@ class AuthController extends Controller
             Log::info("Register User Working");
             $validator = Validator::make($request->all(), [
                 'email' => 'required|string|email|max:70|unique:users',
-                'password' => ['required', 'string', 'max:70', Password::min(8)->mixedCase()->numbers()->symbols()]
+                'password' => ['required', 'string', 'max:70', Password::min(8)->mixedCase()->numbers()]
             ]);
 
             if ($validator->fails()) {
@@ -132,7 +132,7 @@ class AuthController extends Controller
         try {
             Log::info("User Login Working");
             $validator = Validator::make($request->all(), [
-                'password' => ['required', 'string', 'max:70', Password::min(8)->mixedCase()->numbers()->symbols()]
+                'password' => ['required', 'string', 'max:70', Password::min(8)->mixedCase()->numbers()]
             ]);
 
             if ($validator->fails()) {
